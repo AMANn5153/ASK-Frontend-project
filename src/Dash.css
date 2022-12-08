@@ -1,0 +1,41 @@
+.dash{
+    display:grid;
+    grid-template-columns: 1;
+    grid-template-rows: 1fr 9fr 3fr;
+}
+.Nav{
+    grid-row: 1/2;
+    height:71px;
+    width: 100%;
+}
+
+.main-dash-div{
+    grid-row: 2/-1;
+    display:grid;
+    grid-template-columns: 8fr 3fr;
+}
+
+/* .col-ri-styl{
+    grid-row: 1/-1;
+    grid-column:1/2;
+    box-shadow: 0 2px 6px black;
+} */
+.ques-div-styl{
+    grid-column: 1/2;
+    width: 100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+.card-guidline{
+    grid-column: 2/-1;
+    height:100%;
+    width: 100%;
+    flex-grow:1;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
