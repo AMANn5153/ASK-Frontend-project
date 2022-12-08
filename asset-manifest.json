@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/ASK-Frontend-project/static/css/main.adc8aed6.css",
+    "main.js": "/ASK-Frontend-project/static/js/main.aacc4121.js",
+    "static/media/edit-background.jpg": "/ASK-Frontend-project/static/media/edit-background.ea40f3be52b0bbacfc32.jpg",
+    "static/media/regisimg.svg": "/ASK-Frontend-project/static/media/regisimg.52cc5d82f09e2b15c2fb2c0ce791bc78.svg",
+    "static/media/login.svg": "/ASK-Frontend-project/static/media/login.71837a8df366e3d16c8cbb5929730ebc.svg",
+    "index.html": "/ASK-Frontend-project/index.html",
+    "static/media/wave.svg": "/ASK-Frontend-project/static/media/wave.7475de1a4153402715ae.svg",
+    "main.adc8aed6.css.map": "/ASK-Frontend-project/static/css/main.adc8aed6.css.map",
+    "main.aacc4121.js.map": "/ASK-Frontend-project/static/js/main.aacc4121.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.adc8aed6.css",
+    "static/js/main.aacc4121.js"
+  ]
+}
