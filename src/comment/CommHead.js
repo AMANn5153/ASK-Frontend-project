@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import "./comment.css"
 import {AiOutlineLike} from "react-icons/ai"
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,11 +15,11 @@ const CommHead = (props) => {
     const check=useSelector(state=>state.UserInfo)
     useEffect(() => {
         dispatch(checkUser({id:props.id,Postid:props.Postid}))
-        },[dispatch,checkUser,props.id])
+        },[dispatch,props.id,props.Postid])
 
      useEffect(() => {
          dispatch(getLikes({id:props.id,Postid:props.Postid}))
-    },[dispatch,getLikes,props.Postid,props.id])
+    },[dispatch,props.id,props.Postid])
         
     
 

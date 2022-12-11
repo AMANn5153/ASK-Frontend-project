@@ -1,37 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState,useContext} from 'react'
 import Popup from "reactjs-popup"
 import './UserInfo.css'
 import "./Edit.css"
 import { TabContent, TabNav } from './UserInfo'
 import { useDispatch, useSelector } from 'react-redux'
-import { postAddInfo,cleanState } from './feature/UserInfo/EditProfile'
+import { postAddInfo,cleanState,postEditProfile,editClean} from './feature/UserInfo/EditProfile'
 import { ToastContainer, toast } from 'react-toastify';
+import {editCompCon} from "./UserInfo"
 
 
 
 const AddInfo=()=>{
   const dispatch=useDispatch()
-  const stateAddInfo=useSelector(state=>state.editProfile)
+  const stateAddInfo=useSelector(state=>state.editProfile)// getting all the state values from the editProfile
   console.log(stateAddInfo)
-  const [newInfo,setNewInfo]=useState({
+  const [newInfo,setNewInfo]=useState({// local state to store all the values
     mobile:"",profession:"",college:"",company:""
   })
 
   let name,value
 
-  const handleEditChanges=(e)=>{
+  const handleEditChanges=(e)=>{// chandleing the changes in input feilds
     name=e.target.name
     value=e.target.value
     setNewInfo({...newInfo,[name]:value})
   }
-  const addInfoSub=(e)=>{
+  const addInfoSub=(e)=>{// submitting the form data
     e.preventDefault();
-    dispatch(postAddInfo(newInfo))
-    setNewInfo({...newInfo,mobile:"",profession:"",college:"",company:""})
+    dispatch(postAddInfo(newInfo))// dispatching an action postAddInfo 
+    setNewInfo({...newInfo,mobile:"",profession:"",college:"",company:""})// setting all the input to empty string
   }
-  if(stateAddInfo.status==="pending"){
+  if(stateAddInfo.status==="pending"){// pending status of action waiting for the responnse from the backend
     toast(stateAddInfo.message,{
-      position:'top-center',
+      position:'top-center',// alert by toast
       pauseOnHover:false,
       theme:"light"
     })
@@ -50,6 +51,7 @@ const AddInfo=()=>{
       pauseOnHover:false,
       theme:"light"
     })
+    dispatch(cleanState())
   }
 
   return(
@@ -69,28 +71,73 @@ const AddInfo=()=>{
 }
 
 const EditingProfile=()=>{
-  
+  const userInfo=useContext(editCompCon)
+  const dispatch=useDispatch()
+  const state=useSelector(state=>state.editProfile.edit)
+  const [data,setData]=new useState({
+    username:userInfo.username, email:userInfo.email,mobile:userInfo.mobile,profession:userInfo.profession,
+    college:userInfo.college,company:userInfo.company
+  })
+
+  let name,value
+
+  const handleChange=(e)=>{
+    name=e.target.name
+    value=e.target.value
+    setData({...data,[name]:value})
+  }
+
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    dispatch(postEditProfile(data));
+    setData({...data,username:userInfo.username,
+      email:userInfo.email,mobile:userInfo.mobile,profession:userInfo.profession,
+      college:userInfo.college,company:userInfo.company})
+  }
+
+  if(state.status==="pending"){
+    toast(state.message,{
+      position:"top-center",
+      pauseOnHover:true,
+      theme:"light"
+    })
+  }
+  if(state.status==="fufilled"){
+    toast(state.message,{
+      position:"top-center",
+      pauseOnHover:true,
+      theme:"colored"
+    })
+    dispatch(editClean())
+  }
+  if(state.status==="rejected"){
+    toast(state.message,{
+      position:"top-center",
+      pauseOnHover:true,
+      theme:"dark"
+    })
+    dispatch(editClean())
+  }
+
   return(
     <>
-      <input placeholder='UserName'/>
-      <input placeholder='Email'/>
-      <input placeholder='Password'/>
-      <input placeholder="Mobile No"/>
-      <input placeholder="Profession"/>
-      <input placeholder="College"/>
-      <input placeholder="Company"/>
+      <input placeholder={userInfo.username} name='username' autoComplete='off' onChange={handleChange} value={data.username}/>
+      <input placeholder={userInfo.email} name='email'  autoComplete='off' onChange={handleChange} value={data.email}/>
+      <input placeholder={userInfo?.mobile!=undefined?userInfo.mobile:"mobile No"} name='mobile'  autoComplete='off' onChange={handleChange} value={data.mobile}/>
+      <input placeholder={userInfo?.profession!=undefined?userInfo.profession:"profession"} name='profession'  autoComplete='off' onChange={handleChange} value={data.profession}/>
+      <input placeholder={userInfo?.college!=undefined?userInfo.college:"college"} name='college' autoComplete='off' onChange={handleChange} value={data.college}/>
+      <input placeholder={userInfo?.company!=undefined?userInfo.company:"comapny"} name='company'  autoComplete='off' onChange={handleChange} value={data.company}/>
       <div className='editingProfile-btn'>
-      <button className="btn">submit </button>
+      <button className="btn" onClick={handleSubmit}>submit </button>
       </div>
     </>
   )
 }
 
-const Edit = (props) => {
-  const {info}=props
+const Edit = () => {
+  const userInfo=useContext(editCompCon)
   const [showActive,setActive]=useState("Edit")
-  console.log(info)
-  const tabsBool=info.mobile===undefined||info.profession===undefined||info.college===undefined||info.comapny===undefined
+  const tabsBool=userInfo.mobile===undefined||userInfo.profession===undefined||userInfo.college===undefined||userInfo.comapny===undefined
   console.log("tabBool",tabsBool)
   return (
     <>

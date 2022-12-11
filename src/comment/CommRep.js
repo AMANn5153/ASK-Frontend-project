@@ -10,7 +10,7 @@ const CommRep = (props) => {
 
   useEffect(() => {
     dispatch(fetchUser({id:props.replyId}))
-  }, [dispatch])
+  }, [dispatch,props.replyId])
   
 
   

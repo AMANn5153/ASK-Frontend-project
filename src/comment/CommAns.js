@@ -4,7 +4,6 @@ import CommRep from './CommRep'
 import  { fetchUser } from '../feature/UserInfo/UserInfo'
 import {AiOutlineLike} from "react-icons/ai"
 import { useDispatch, useSelector } from 'react-redux'
-import { postLike } from '../feature/Comments/comments'
 import { postReply,} from '../feature/Reply/Reply'
 
 
@@ -25,7 +24,7 @@ const CommAns = (props) => {
 
   useEffect(() => {
     dispatch(fetchUser({id:id}))
-  }, [dispatch,fetchUser])
+  }, [dispatch,id])
 
   
   

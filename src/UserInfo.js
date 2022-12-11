@@ -1,4 +1,4 @@
-import React, {useState,useEffect,useRef } from 'react'
+import React, {useState,useEffect,useRef, createContext } from 'react'
 import "./UserInfo.css"
 import NavBar from "./Navbar"
 import Profile from "./Profile"
@@ -38,6 +38,8 @@ export const TabContent=(props)=>{
     props.showActive===props.title?props.children:null
   )
 }
+
+export const editCompCon=createContext()
 
 
 const UserInfo = () => {
@@ -104,7 +106,9 @@ const UserInfo = () => {
               <p></p>
             </div>
             <div className='account-body-button'>
-            <Edit info={info}/>           
+            <editCompCon.Provider value={info}>
+            <Edit />   
+            </editCompCon.Provider>    
             </div>
         </div>
         <div className='account-body'>

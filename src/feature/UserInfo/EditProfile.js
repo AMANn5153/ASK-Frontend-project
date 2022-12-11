@@ -3,7 +3,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 
 const initialState={
     message:"",
-    status:"idle"
+    status:"idle",
+    edit:{
+        message:"",
+        status:"idle"
+    }
 }
 
 
@@ -35,6 +39,31 @@ export const postAddInfo=createAsyncThunk("userEdit/postAddInfo",async(data,{rej
 })
 
 
+export const postEditProfile=createAsyncThunk("userEdit/postEditProfile",async(data,{rejectWithValue})=>{
+    try{
+    const editProfile=await fetch("/EditProfile",{
+        method:"Put",
+        headers:{
+            "Accepts":"application/json",
+            "content-type":"Application/json"
+        },body:JSON.stringify({
+            data
+        })
+    }
+    )
+    const res=editProfile.json();
+    if(editProfile?.status===200){
+        return res
+    }
+    else{
+        rejectWithValue(res)
+    }}
+    catch(e){
+        console.log(e)
+    }
+})
+
+
 export const editProfile=createSlice({
     name:"userEdit",
     initialState,
@@ -42,6 +71,11 @@ export const editProfile=createSlice({
       cleanState:(state,action)=>{
         state.message=""
         state.status="idle"
+      },
+      editClean:(state,action)=>{
+        state.edit.message=""
+        state.edit.status="idle"
+
       }
     },
     extraReducers(builder){
@@ -57,9 +91,20 @@ export const editProfile=createSlice({
             state.status="rejected"
             state.message="some error occured"
         })
+        .addCase(postEditProfile.pending,(state,action)=>{
+            state.edit.status="pending"
+        })
+        .addCase(postEditProfile.fulfilled,(state,action)=>{
+            state.edit.status="fulfilled"
+            state.edit.message=action.payload
+        })
+        .addCase(postEditProfile.rejected,(state,action)=>{
+            state.edit.status="rejected"
+            state.edit.message=action.payload
+        })
     }
 })
 
-export const {cleanState}=editProfile.actions
+export const {cleanState,editClean}=editProfile.actions
 
 export default editProfile.reducer

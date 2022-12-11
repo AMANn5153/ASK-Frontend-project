@@ -114,7 +114,7 @@ export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectW
 export const accountUpdates=createAsyncThunk("user/accountUpdates",async(data)=>{
     const about=data
     try{
-        const accountDetails=await fetch("/updateAccount",{
+        const accountDetails=await fetch("/updateAbout",{
             method:"put",
             headers:{
             "Accepts":"application/json",
