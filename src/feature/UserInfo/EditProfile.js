@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
 const initialState={
-    message:""
+    message:"",
+    status:""
 }
 
 
@@ -38,9 +39,26 @@ export const editProfile=createSlice({
     name:"userEdit",
     initialState,
     reducers:{
-
+      cleanState:(state,action)=>{
+        state.message=""
+      }
     },
     extraReducers(builder){
-        builder.addCase(postAddInfo.pending)
+        builder.addCase(postAddInfo.pending,(state,action)=>{
+            state.status="pending"
+            state.message="sending user data"
+        })
+        .addCase(postAddInfo.fulfilled,(state,action)=>{
+            state.status="fulfilled"
+            state.message=action.payload.message
+        })
+        .addCase(postAddInfo.rejected,(state,action)=>{
+            state.status="rejected"
+            state.message="some error occured"
+        })
     }
 })
+
+export const {cleanState}=editingProfile.action
+
+export default editProfile.reducer

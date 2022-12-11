@@ -3,12 +3,15 @@ import Popup from "reactjs-popup"
 import './UserInfo.css'
 import "./Edit.css"
 import { TabContent, TabNav } from './UserInfo'
-import { useDispatch } from 'react-redux'
-import { postAddInfo } from './feature/UserInfo/UserInfo'
+import { useDispatch, useSelector } from 'react-redux'
+import { postAddInfo } from './feature/UserInfo/EditProfile'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 const AddInfo=()=>{
   const dispatch=useDispatch()
+  const stateAddInfo=useSelector(state=>state.editingProfile)
 
   const [newInfo,setNewInfo]=useState({
     mobile:"",profession:"",college:"",company:""
@@ -24,6 +27,28 @@ const AddInfo=()=>{
   const addInfoSub=(e)=>{
     e.preventDefault();
     dispatch(postAddInfo(newInfo))
+    setNewInfo({...newInfo,mobile:"",profession:"",college:"",company:""})
+  }
+  if(state.status==="pending"){
+    toast(state.message,{
+      position:'top-center',
+      pauseOnHover:false,
+      theme:"light"
+    })
+  }
+  else if(state.status==="fulfilled"){
+    toast(state.message,{
+      position:'top-center',
+      pauseOnHover:false,
+      theme:"light"
+    })
+  }
+  else if(state.status==="rejected"){
+    toast(state.message,{
+      position:'top-center',
+      pauseOnHover:false,
+      theme:"light"
+    })
   }
 
   return(
@@ -37,6 +62,7 @@ const AddInfo=()=>{
           <button className="btn" onClick={addInfoSub}>submit </button>
           </div>
         </form>    
+      <ToastContainer/>
     </>
   )
 }
