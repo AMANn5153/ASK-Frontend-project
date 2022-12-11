@@ -4,7 +4,7 @@ import Comment from "../feature/Comments/comments"
 import UserInfo from "../feature/UserInfo/UserInfo";
 import Login from "../feature/Log_in_out/Login_out";
 import Reply from "../feature/Reply/Reply";
-import { editProfile } from "../feature/UserInfo/EditProfile";
+import editProfile  from "../feature/UserInfo/EditProfile";
 
 export const Store=configureStore({
     reducer:{

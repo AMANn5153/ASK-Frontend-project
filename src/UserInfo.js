@@ -41,16 +41,13 @@ export const TabContent=(props)=>{
 
 
 const UserInfo = () => {
-
   const dispatch=useDispatch()
   const [Active,setActive]=useState("profile");
   const [pic,setPic]=useState()
   const [info,setInfo]=useState({
-    username:"",email:"",profilePic:"" ,about:"",post:[]
+    username:"",email:"",profilePic:"" ,about:"",post:[],mobile:"",profession:"",company:"",college:""
   })
   const stateInfo =useSelector(state=>state.UserInfo.accountUserInfo)
-
-  
 
   useEffect(() => {// fethcing all the information of user 
     dispatch(accountFetchUser())
@@ -60,7 +57,10 @@ const UserInfo = () => {
   
   useEffect(() => {
     if(stateInfo[0].status==="fulfilled"){
-      setInfo({...info,username:stateInfo[1].username,email:stateInfo[1].email,profilePic:stateInfo[0].proPicURL,about:stateInfo[1]?.About,post:stateInfo[1].Post})
+      setInfo({...info,username:stateInfo[1].username,email:stateInfo[1].email,
+        profilePic:stateInfo[0].proPicURL,about:stateInfo[1]?.About,post:stateInfo[1].Post,mobile:stateInfo[1]?.mobile,
+         profession:stateInfo[1]?.profession,company:stateInfo[1]?.company,college:stateInfo[1]?.college
+      })
       dispatch(clearTheInfo())
     }
   }, [dispatch,info,stateInfo])
@@ -104,7 +104,7 @@ const UserInfo = () => {
               <p></p>
             </div>
             <div className='account-body-button'>
-            <Edit/>
+            <Edit info={info}/>           
             </div>
         </div>
         <div className='account-body'>

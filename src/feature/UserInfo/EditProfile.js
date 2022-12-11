@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 
 const initialState={
     message:"",
-    status:""
+    status:"idle"
 }
 
 
@@ -41,6 +41,7 @@ export const editProfile=createSlice({
     reducers:{
       cleanState:(state,action)=>{
         state.message=""
+        state.status="idle"
       }
     },
     extraReducers(builder){
@@ -59,6 +60,6 @@ export const editProfile=createSlice({
     }
 })
 
-export const {cleanState}=editingProfile.action
+export const {cleanState}=editProfile.actions
 
 export default editProfile.reducer

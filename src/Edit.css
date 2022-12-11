@@ -17,16 +17,19 @@
     color:orange;
     border-radius:100%;
     border:1px solid black;
-    width:20px
+    width:30px;
+    height: 30px;
+    font-size: x-large;
+    text-align: center;
 }
 .popup-overlay{
-     background: rgba(0, 0, 0, 0.5); 
+     background: rgba(0, 0, 0, 0.5);
   }
   .popup-content {
     margin: auto;
-    background-image: url(images/edit-background.jpg);
+    background: rgb(196,197,197);
     width: 80%;
-    height: 65%;
+    height: 75%;
     padding: 5px;
   }
 

@@ -4,7 +4,7 @@ import Heading from './Welcome/Heading';
 import regisimg from './regisimg.svg'
 import {ImUser} from "react-icons/im"
 import {AiOutlineMail} from "react-icons/ai"
-import {MdNoEncryption, MdPassword} from "react-icons/md"
+import { MdPassword} from "react-icons/md"
 import {FaHouseUser} from "react-icons/fa"
 import "./Registration.css"
 import { NavLink } from 'react-router-dom';

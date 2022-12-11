@@ -4,15 +4,15 @@ import './UserInfo.css'
 import "./Edit.css"
 import { TabContent, TabNav } from './UserInfo'
 import { useDispatch, useSelector } from 'react-redux'
-import { postAddInfo } from './feature/UserInfo/EditProfile'
+import { postAddInfo,cleanState } from './feature/UserInfo/EditProfile'
 import { ToastContainer, toast } from 'react-toastify';
 
 
 
 const AddInfo=()=>{
   const dispatch=useDispatch()
-  const stateAddInfo=useSelector(state=>state.editingProfile)
-
+  const stateAddInfo=useSelector(state=>state.editProfile)
+  console.log(stateAddInfo)
   const [newInfo,setNewInfo]=useState({
     mobile:"",profession:"",college:"",company:""
   })
@@ -29,22 +29,23 @@ const AddInfo=()=>{
     dispatch(postAddInfo(newInfo))
     setNewInfo({...newInfo,mobile:"",profession:"",college:"",company:""})
   }
-  if(state.status==="pending"){
-    toast(state.message,{
+  if(stateAddInfo.status==="pending"){
+    toast(stateAddInfo.message,{
       position:'top-center',
       pauseOnHover:false,
       theme:"light"
     })
   }
-  else if(state.status==="fulfilled"){
-    toast(state.message,{
+  else if(stateAddInfo.status==="fulfilled"){
+    toast(stateAddInfo.message,{
       position:'top-center',
       pauseOnHover:false,
       theme:"light"
     })
+    dispatch(cleanState())
   }
-  else if(state.status==="rejected"){
-    toast(state.message,{
+  else if(stateAddInfo.status==="rejected"){
+    toast(stateAddInfo.message,{
       position:'top-center',
       pauseOnHover:false,
       theme:"light"
@@ -68,6 +69,7 @@ const AddInfo=()=>{
 }
 
 const EditingProfile=()=>{
+  
   return(
     <>
       <input placeholder='UserName'/>
@@ -84,8 +86,12 @@ const EditingProfile=()=>{
   )
 }
 
-const Edit = () => {
+const Edit = (props) => {
+  const {info}=props
   const [showActive,setActive]=useState("Edit")
+  console.log(info)
+  const tabsBool=info.mobile===undefined||info.profession===undefined||info.college===undefined||info.comapny===undefined
+  console.log("tabBool",tabsBool)
   return (
     <>
     <div>
@@ -98,9 +104,9 @@ const Edit = () => {
           <button className="close-btn" onClick={close}>&times;</button>
             <ul className='nav'>
               <TabNav title="Edit" showActive={showActive} setActive={setActive}/>
-              <TabNav title="Add Info" showActive={showActive} setActive={setActive}/>
+             {tabsBool?"":<TabNav title="Add Info" showActive={showActive} setActive={setActive}/>}
             </ul>
-              <div >
+              <div style={{display:"flex",flexDirection:"column"}}>
               <TabContent title="Edit" showActive={showActive}><EditingProfile/></TabContent>
               <TabContent title="Add Info" showActive={showActive}><AddInfo/></TabContent>
               </div>            

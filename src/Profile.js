@@ -94,7 +94,7 @@ const Profile = (props) => {
             <div className='profile-about-post'>
                 <h1>About</h1>
                 <div style={info?.about===""?style.about:style.msg}>
-                  {info?.about===""||info.about===undefined?<About />:<AboutMessage msg={info.about}/>}
+                  {info?.about===""||info?.about===undefined?<About />:<AboutMessage msg={info.about}/>}
                 </div>
                 <h1>Posts</h1>
                 <div className='profile-post'>
