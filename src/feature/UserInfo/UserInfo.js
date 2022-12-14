@@ -42,7 +42,7 @@ const initialState={
  })
 
  
- export const fetchUser=createAsyncThunk("user/fetchUser",async(data)=>{
+ export const fetchUser=createAsyncThunk("user/fetchUser",async(data,{rejectWithValue})=>{
     const {id}=data
     try{
         const fetchInfo=await fetch("/UserInfo",{
@@ -58,6 +58,9 @@ const initialState={
         const res=await fetchInfo.json();
         if(fetchInfo.status===200){
             return res
+        }
+        else{
+            rejectWithValue(res)
         }
     }
     catch(e){
@@ -245,8 +248,13 @@ export const UserInfo=createSlice(
         })
         .addCase(fetchUser.fulfilled,(state,action)=>{
             state.status="fullfilled"
+            console.log(action)
             state.userinfo=action.payload.username
-        }).addCase(checkUser.pending,(state,action)=>{
+        })
+        .addCase(fetchUser.rejected,(state,action)=>{
+            state.status="rejected"
+        })
+        .addCase(checkUser.pending,(state,action)=>{
             state.status="pending"
         })
         .addCase(checkUser.rejected,(state,action)=>{

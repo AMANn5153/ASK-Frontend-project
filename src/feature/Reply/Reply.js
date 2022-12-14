@@ -26,7 +26,7 @@ export const postReply=createAsyncThunk("reply/postReply",async(data,{rejectWith
         if(putReply.status===202){
             return result
         }else{
-            return result
+            return rejectWithValue(result)
         }
     }
     catch(e){
@@ -65,11 +65,16 @@ export const Reply=createSlice({
         cleanTheState:(state,action)=>{
             state.Reply=[];
             state.status=action.payload.status
+        },
+        cleanReplyState:(state,action)=>{
+            state.status="idle"
+            state.message=""
         }
     },
     extraReducers(builder){
         builder.addCase(postReply.pending,(state)=>{
             state.status="pending"
+            state.message="saving"
         })
         .addCase(postReply.fulfilled,(state,action)=>{
             state.status="fulfilled"
@@ -91,5 +96,5 @@ export const Reply=createSlice({
 })
 
 
-export const {cleanTheState}=Reply.actions
+export const {cleanTheState,cleanReplyState}=Reply.actions
 export default Reply.reducer
