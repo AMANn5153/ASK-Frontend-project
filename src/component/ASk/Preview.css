@@ -2,7 +2,8 @@
     width:100%;
     height:100%;
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
+    overflow: scroll;
 }
 .Ask-preview-btn{
     position: relative;
@@ -35,4 +36,22 @@
     height: 30px;
     font-size: x-large;
     text-align: center;
+}
+.Ask-preview-title{
+    flex-grow: 2;
+    margin: 10px;
+    padding:5px;
+    width:100%;
+}
+.Ask-preview-problem{
+    flex-grow:5;
+    margin:10px;
+    padding:5px;
+    width:100%;
+}
+.Ask-preview-expec{
+    flex-grow:5;
+    margin:10px;
+    padding:5px;
+    width:100%;
 }

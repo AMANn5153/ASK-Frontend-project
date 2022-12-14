@@ -4,7 +4,8 @@ const initialState={
     status:"",
     title:"",
     questionDes:"",
-    questionExpec:""
+    questionExpec:"",
+    askImages:""
 }
 
 
@@ -13,13 +14,17 @@ export const ask=createSlice({
     initialState,
     reducers:{
         storeData:(state,action)=>{
-            state.title=action.payload
-            state.questionDes=action.payload
-            state.questionExpec=action.paylaod
+            state.title=action.payload.input.askInput
+            state.questionDes=action.payload.text.text
+            state.questionExpec=action.payload.askText.askText
+        },
+        storeCodeSnip:(state,action)=>{
+            console.log(action)
+            state.askImages=action.payload
         }
     }
 
 })
 
-export const {storeData}=ask.actions
+export const {storeData,storeCodeSnip}=ask.actions
 export default ask.reducer

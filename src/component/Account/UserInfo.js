@@ -1,11 +1,11 @@
 import React, {useState,useEffect,useRef, createContext } from 'react'
 import "./UserInfo.css"
-import NavBar from "./Navbar"
+import NavBar from "../Navbar/Navbar"
 import Profile from "./Profile"
 import Activity from "./Activity"
 import Saves from "./Saves"
 import { useSelector, useDispatch } from 'react-redux'
-import { accountFetchUser,clearTheInfo,profilePic,getProfilePic} from './feature/UserInfo/UserInfo'
+import { accountFetchUser,clearTheInfo,profilePic,getProfilePic} from '../../feature/UserInfo/UserInfo'
 import Edit from './Edit'
 
 const style={

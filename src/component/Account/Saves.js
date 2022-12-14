@@ -1,6 +1,6 @@
 import React from 'react'
-import { comingSoon } from './Welcome/Darray'
-import Animation from './Welcome/Animation'
+import { comingSoon } from '../Extras/Darray'
+import Animation from '../Extras/Animation'
 
 const Saves = () => {
   return (

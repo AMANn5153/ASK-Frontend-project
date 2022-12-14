@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { accountUpdates,getStats } from './feature/UserInfo/UserInfo';
+import { accountUpdates,getStats } from '../../feature/UserInfo/UserInfo';
 import {AiOutlineDelete,AiOutlineEdit} from "react-icons/ai"
-import { delQues } from './feature/UserInfo/UserInfo';
+import { delQues } from '../../feature/UserInfo/UserInfo';
 import  "./Profile.css";
 
 const style={

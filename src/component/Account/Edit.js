@@ -4,7 +4,7 @@ import './UserInfo.css'
 import "./Edit.css"
 import { TabContent, TabNav } from './UserInfo'
 import { useDispatch, useSelector } from 'react-redux'
-import { postAddInfo,cleanState,postEditProfile,editClean} from './feature/UserInfo/EditProfile'
+import { postAddInfo,cleanState,postEditProfile,editClean} from '../../feature/UserInfo/EditProfile'
 import { ToastContainer, toast } from 'react-toastify';
 import {editCompCon} from "./UserInfo"
 
