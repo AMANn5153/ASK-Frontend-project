@@ -6,6 +6,7 @@ import "./Preview.css"
 const Preview = (props) => {
     const {data}=props
     const dispatch=useDispatch() 
+    dispatcht
        
 
   return (
