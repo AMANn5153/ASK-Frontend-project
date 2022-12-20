@@ -8,6 +8,7 @@ import {BrowserRouter} from 'react-router-dom';
 import { Route, Routes,} from 'react-router-dom';
 import Logout from './component/Login/Logout';
 import Ask from "./component/ASk/Ask";
+import UserInfo from "./component/Account/UserInfo";
 
 const Rout=()=>{
     return(
@@ -20,7 +21,8 @@ const Rout=()=>{
                 <Route  path='/Register' element={<Registration/>}/>
                 <Route  path='/Logout' element={<Logout/>}/>
                 <Route  path='/OpenQues' element={<OpenQues/>}/>    
-                <Route  path='/Ask' element={<Ask/>}/>             
+                <Route  path='/Ask' element={<Ask/>}/>     
+                <Route path="/UserInfo" element={<UserInfo/>}/>     
         </Routes>
     </BrowserRouter>
         </>

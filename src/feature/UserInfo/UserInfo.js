@@ -94,6 +94,7 @@ export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectW
     }
 })
  export const accountFetchUser=createAsyncThunk("user/accountFetchUser",async()=>{//getting the infomation of the account user
+    console.log("   hi")
     try{
         const user=await fetch("/Account",{
             method:"Get",

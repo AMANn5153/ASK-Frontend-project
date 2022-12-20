@@ -55,3 +55,24 @@
     padding:5px;
     width:100%;
 }
+.Ask-preview-post{
+    flex-grow: 1;
+    margin:10px;
+    padding:5px;
+    width:100%;
+}
+.ask-post-btn{
+    width:75px;
+    height:45px;
+    padding:5px;
+    color:orange;
+    background: white;
+    cursor: pointer;
+    border: 1px solid orange;
+    border-radius: 5px;
+}
+.ask-post-btn:hover{
+    box-shadow: 1px 1px 1px green;
+    color: green;
+    border:2px solid green;
+}

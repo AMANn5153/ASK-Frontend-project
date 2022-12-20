@@ -94,7 +94,8 @@ const disablingButton=text?.text&&askText?.askText&&input?.askInput
         <p style={{margin:"5px",padding:"20px"}}>describe what result do you want </p>
           <QuesArea askText={askText} setAskText={setAskText} switch="false"/>
         </div>
-        <previewCon.Provider value={{text,askText,input,disablingButton,image,triggerSubmit}}>
+        <previewCon.Provider value={{text,askText,input,disablingButton,image,triggerSubmit,
+        setText,setAskText,setInput}}>
         <Preview/>
         </previewCon.Provider>
       </div>

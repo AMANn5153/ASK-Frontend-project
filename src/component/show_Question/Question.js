@@ -29,7 +29,8 @@ const FulFilledQuestion=(props)=>{
                         id={id}
                        Postid={postVal._id} 
                        heading={postVal.title}
-                      content={postVal.ques}
+                      content={postVal.problem}
+                      contentExpec={postVal.problemExpec}
                       />
                 )
               }))    

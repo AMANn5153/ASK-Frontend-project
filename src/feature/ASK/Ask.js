@@ -1,13 +1,13 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState={
-    status:"",
+    status:"idle",
+    message:"",
     title:"",
     questionDes:"",
     questionExpec:"",
     askImages:""
 }
-
 
 export const ask=createSlice({
     name:"Ask",
@@ -19,12 +19,46 @@ export const ask=createSlice({
             state.questionExpec=action.payload.askText.askText
         },
         storeCodeSnip:(state,action)=>{
-            console.log(action)
             state.askImages=action.payload
+        },
+        reset:(state,action)=>{
+            state.status="idle"
+            state.message=""
         }
-    }
+    },
+    extraReducers(builder){
+        builder.addCase(postQuestion.pending,(state,action)=>{
+            state.status="pending"
+        })
+        .addCase(postQuestion.fulfilled,(state,action)=>{
+            state.status="fulfilled"
+            state.message=action.payload.message
+        })
+        .addCase(postQuestion.rejected,(state,action)=>{
+            state.status="fulfilled"
+            state.message=action.payload.error
+        })
 
+    }
 })
 
-export const {storeData,storeCodeSnip}=ask.actions
+
+export const postQuestion=createAsyncThunk("Ask/postQuestion",async(data)=>{
+ 
+    try{
+       const res = await  fetch("/Ask",{
+        method:"Post",
+        body:data
+       })
+       const result=await res.json()
+       console.log(result)
+    }
+    catch(e){
+        console.log(e)
+    }
+})
+
+
+
+export const {storeData,storeCodeSnip,reset}=ask.actions
 export default ask.reducer

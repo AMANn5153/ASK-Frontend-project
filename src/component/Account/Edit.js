@@ -150,7 +150,7 @@ const Edit = () => {
           <div className='modal'>
           <button className="close-btn" onClick={close}>&times;</button>
             <ul className='nav'>
-              <TabNav title="Edit" showActive={showActive} setActive={setActive}/>
+            <TabNav title="Edit" showActive={showActive} setActive={setActive}/>
              {tabsBool?"":<TabNav title="Add Info" showActive={showActive} setActive={setActive}/>}
             </ul>
               <div style={{display:"flex",flexDirection:"column"}}>

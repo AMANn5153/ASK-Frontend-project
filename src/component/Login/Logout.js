@@ -18,7 +18,6 @@ const Logout = () => {
         credentials:"include"
     }).then((res)=>{
         dispatch(out({loginOrOut:false,status:"idle"}))//dispathing out action with payload to default value of initialstate
-        localStorage.removeItem("logged")// removing the localStorage
         navigate("/Login")//redirecting to /Login
     }).catch((e)=>{console.log(e)})
    })

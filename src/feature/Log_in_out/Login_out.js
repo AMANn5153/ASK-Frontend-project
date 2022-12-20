@@ -6,6 +6,25 @@ const initialState={
     status:"idle"
 }
 
+export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
+    console.log("hi")
+    try{
+    const res=await fetch("/CheckLogin",{
+        method:"get",
+        headers:{
+            "Accepts":"Application/json",
+            "Content-Type":"Application/json"
+        },withCredentials:true,
+        credentials:"include"
+    })
+    const result=await res.json()
+        return result
+    }
+    catch(e){
+        console.log(e)
+    }
+})
+
 export const postLogin=createAsyncThunk("LoginOut/postLogin",async(data,{rejectWithValue})=>{
     const {email,Password}=data
     const res= await fetch("/Login",{
@@ -50,12 +69,27 @@ export const LoginOut=createSlice({
         })
         .addCase(postLogin.fulfilled,(state,action)=>{
             state.status="fulfilled"
-            console.log(action)
             state.message=action.payload.message
         })
         .addCase(postLogin.rejected,(state,action)=>{
             state.status="rejected"
             state.message=action.payload.error
+        })
+        .addCase(checkLogin.pending,(state,action)=>{
+            state.status="pending"
+        })
+        .addCase(checkLogin.fulfilled,(state,action)=>{
+            state.status="fulfilled"
+            state.loginOrOut=action.payload.message
+            if(action.payload.error){
+                state.status=false
+            }
+        })
+        .addCase(checkLogin.rejected,(state,action)=>{
+            console.log(action)
+            state.status="rejected"
+            state.loginOrOut=false
+            state.message=action.payload
         })
     }
 })

@@ -38,7 +38,6 @@ const Login = () => {
   }
   else if(state.status==="fulfilled"){
     dispatch(Logged({loginOrOut:true}))
-    localStorage.setItem("logged",true)
     navigate("/") 
   }
   else if(state.status==="rejected"){

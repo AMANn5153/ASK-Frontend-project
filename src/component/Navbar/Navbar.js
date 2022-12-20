@@ -7,7 +7,7 @@ import { FaUserCircle} from 'react-icons/fa'
 import {IoIosNotifications} from 'react-icons/io'
 import {BiLogOutCircle,BiLogInCircle,BiRegistered} from "react-icons/bi"
 import { useDispatch, useSelector } from 'react-redux'
-import { out } from '../../feature/Log_in_out/Login_out'
+import { checkLogin } from '../../feature/Log_in_out/Login_out'
 
 
 const Iconsnav=()=>{
@@ -31,13 +31,12 @@ const Sign=()=>{
 
 const NavBar=()=>{
     const dispatch=useDispatch()
-    useEffect(() => {
-    if(localStorage.getItem("logged")){//checking whether the user is still Logged in or not from LocalStorage
-        dispatch(out({loginOrOut:true,status:"fulfilled"}))//dispacthing "out" action 
-       }
-    }, [dispatch])
-    
     const stateInOut=useSelector(state=>state.Login)//getting state of login reducer
+
+    useEffect(() => {
+        if(stateInOut.loginOrOut===false){
+        dispatch(checkLogin())}
+    }, [dispatch,stateInOut.loginOrOut])
 
     console.log(stateInOut)
     return(

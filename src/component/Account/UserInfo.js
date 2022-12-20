@@ -53,8 +53,7 @@ const UserInfo = () => {
 
   useEffect(() => {// fethcing all the information of user 
     dispatch(accountFetchUser())
-    dispatch(getProfilePic())                                        
-    
+    dispatch(getProfilePic())                                         
   }, [dispatch])
   
   useEffect(() => {
@@ -83,7 +82,7 @@ const UserInfo = () => {
       triggerSubmit.current=false
     }
   
-  
+  console.log(info)
 
   return (
     <>
