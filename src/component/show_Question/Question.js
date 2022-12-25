@@ -16,24 +16,17 @@ const FulFilledQuestion=(props)=>{
             </div>
             <div className='question-body'>
             <div className='heading-ques'><h1>Question</h1></div>
-            {props.data.post.map((val)=>{
-              const id=val._id
-              const username=val.username
-              console.log(props)
+            {props.data.map((val,index)=>{
                return(
-                 val.Post.map((postVal,index)=>{
-                    return(
                       <QuesPage 
-                        key={index}
-                        username={username}
-                        id={id}
-                       Postid={postVal._id} 
-                       heading={postVal.title}
-                      content={postVal.problem}
-                      contentExpec={postVal.problemExpec}
-                      />
-                )
-              }))    
+                      key={index}
+                      username={val.username}
+                      id={val._id}
+                      heading={val.title}
+                      content={val.problem}
+                      userId={val.userId}
+                   />
+              )   
         })}
             </div>
 
@@ -53,17 +46,17 @@ export const PendingQuestion=()=>{
 const Question = () => {
    const dispatch=useDispatch()
    const stateData = useSelector(state=>state.question)
-   
+
    useEffect(() => {
     if(stateData.post.length===0){
     dispatch(dataFetch())
   }
  },[dispatch,stateData.post.length])
-   console.log(stateData.console)
+   console.log(stateData)
 
   return (
     <>
-       {stateData.Status==="pending"?<PendingQuestion/>:<FulFilledQuestion data={stateData}/>}
+       {stateData.Status==="pending"?<PendingQuestion/>:<FulFilledQuestion data={stateData.post}/>}
     </>
   )
 }

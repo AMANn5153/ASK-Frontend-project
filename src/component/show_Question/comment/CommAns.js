@@ -16,7 +16,6 @@ const CommAns = (props) => {
   const dispatch=useDispatch()
   const user=useSelector((state)=>state.UserInfo)
   const replyState=useSelector((state=>state.Reply))
-
  
 
   useEffect(() => {
@@ -62,7 +61,7 @@ const CommAns = (props) => {
       </div>
       <div className='commans-content-styl'>
         <p>
-        {props.content}
+        
         </p>
       </div>
       <div className='footer-commans'>

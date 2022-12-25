@@ -4,18 +4,16 @@ import "./QuesPage.css"
 
 const QuesPage = (props) => {
 
-
   return (
     <>
         <div className='quespage'>
           <div className='quespage-head'>
            <div className='quespage-link'>
              <NavLink className="active" to={"/OpenQues"} state={
-                 { id:props.id,
-                  username:props.username,
-                   Postid:props.Postid,
-                   heading:props.heading,
-                   content:props.content}
+                 { 
+                  id:props.id,
+                  userId:props.userId,
+                  }
                   }><h1 style={{fontWeight:"normal"}}>{props.heading}</h1></NavLink>
             </div>
               <div className='quespage-info'>

@@ -29,8 +29,7 @@ export const dataFetch=createAsyncThunk("question/dataFetch",async(rejectWithVal
      }
    })
    const result= await res.json()
-   console.log(result)
-   if(res.status===200){
+   if(res.status===202){
      return result
    }
    else{
@@ -45,7 +44,7 @@ export const dataFetch=createAsyncThunk("question/dataFetch",async(rejectWithVal
 )
 
 export const getLikes=createAsyncThunk("question/getLikes",async(data,{rejectWithValue})=>{
-  const {id,Postid}=data
+  const {userId,Postid}=data
   try{
     const getLikeApi=await fetch("/getLikes",{
       method:"Post",
@@ -54,7 +53,7 @@ export const getLikes=createAsyncThunk("question/getLikes",async(data,{rejectWit
         "Content-type":"application/json"
       },
       body:JSON.stringify({
-           id,Postid
+           userId,Postid
       })      
     })
     const result=await getLikeApi.json();
@@ -74,7 +73,7 @@ export const getLikes=createAsyncThunk("question/getLikes",async(data,{rejectWit
 
 
 export const Post=createAsyncThunk("question/Post",async (like,{rejectWithValue})=>{
-  const {id,Postid}=like
+  const {userId,Postid}=like
   console.log(like)
   try{
    const res=await fetch("/PostLike",{
@@ -84,11 +83,10 @@ export const Post=createAsyncThunk("question/Post",async (like,{rejectWithValue}
      "Content-type":"application/json"
    },
    body:JSON.stringify({
-        id,Postid
+       userId,Postid
    })
  })
  const result= await res.json()
- console.log(result)
  if(res.status===200){
    return result
  }
@@ -125,12 +123,10 @@ export const Question=createSlice({
             state.Status="pending"
         })
         .addCase(dataFetch.fulfilled,(state,action)=>{
-            console.log(action)
             state.Status="succeded"
-            state.post=state.post.concat(action.payload);
+            state.post=state.post.concat(action.payload)
         })
         .addCase(dataFetch.rejected,(state,action)=>{
-          console.log(action)
           state.Status="reject"
           state.error=action.payload
         })
@@ -148,7 +144,6 @@ export const Question=createSlice({
         })
         .addCase(getLikes.fulfilled,(state,action)=>{
           state.status="fulfilled"
-          console.log(action)
           state.Like.Likes=action.payload[0].Post[0].Likes
         })
         .addCase(getLikes.rejected,(state,action)=>{

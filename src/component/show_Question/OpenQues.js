@@ -4,14 +4,31 @@ import { useLocation } from 'react-router'
 import Questionpost from './Questionpost'
 import "./Question.css"
 import "./OpenQues.css"
-import { createContext } from 'react'
-
+import { createContext,useEffect } from 'react'
+import { fetchDetails } from '../../feature/Question/detail_Ques_comm'
+import { getCodeSnip } from '../../feature/Question/detail_Ques_comm'
+import { PendingQuestion } from './Question'
+import { useSelector,useDispatch } from 'react-redux'
 
 export const locationCon=createContext()
 
-const OpenQues = () => {
+const OpenQues=()=>{
+  const dispatch=useDispatch()
   const location=useLocation();
 
+  useEffect(() => {//getting all the comments for the question
+    dispatch(fetchDetails(location.state.id))
+    dispatch(getCodeSnip(location.state.id))
+  }, [dispatch,location.state.id])
+
+  const QuestionInfo=useSelector(state=>state.questionDetails)
+  return(
+    QuestionInfo.status==="pending"?<PendingQuestion/>:<RenderQuestion state={location.state}/>
+    )
+}
+
+
+const RenderQuestion = (props) => {
   return (
     <div className='OpenQues'>
       <div className='OpenQues-nav'>
@@ -19,9 +36,9 @@ const OpenQues = () => {
       </div>
       <div className='OpenQues-body'>
         <div className='OpenQues-body-display'>
-        <locationCon.Provider value={location.state}> 
-        <Questionpost
-        /></locationCon.Provider>
+        <locationCon.Provider value={props}> 
+        <Questionpost/>
+        </locationCon.Provider>
         </div>
         <div className='OpenQues-body-news'>
 

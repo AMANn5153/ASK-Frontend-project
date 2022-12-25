@@ -17,9 +17,9 @@ import "./Write.css"
 
 
 
+
 const Questionpost = (props) => {
   const loc=useContext(locationCon)
-  const {id,Postid}=loc
   const dispatch=useDispatch()
   const state=useSelector((state)=>state.comment)
   const comment=state.comment
@@ -29,9 +29,7 @@ const Questionpost = (props) => {
   const [showAnswer,setAnswer]=useState({Answer:""})
   
   
-  useEffect(() => {//getting all the comments for the question
-    dispatch(fetchingComments({id,Postid}))
-  }, [dispatch,id,Postid])
+
  
 
 
@@ -45,7 +43,7 @@ const Questionpost = (props) => {
   const submitAnswer=(e)=>{// dispatch  to posting comment thunk
       e.preventDefault();
       if(state.status==="idle"){
-      dispatch(sendComment({comment:showAnswer.answer,userId:id,Postid:Postid}))
+      dispatch(sendComment(showAnswer))
       }
       setAnswer({...showAnswer,answer:""});  
   }
