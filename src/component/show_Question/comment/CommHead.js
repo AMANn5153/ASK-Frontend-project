@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react'
 import { locationCon } from '../OpenQues'
+import { fetchDetails,getCodeSnip } from '../../../feature/Question/detail_Ques_comm'
 
 
 const LikeButton=()=>{
@@ -17,7 +18,7 @@ const LikeButton=()=>{
     const questionState=useSelector((state)=>state.question.Like)
     
     const likeSave=()=>{ 
-        dispatch(Post({id:loc.userId,Postid:loc.Postid})) 
+        dispatch(Post({id:loc.userId,postId:loc.id})) 
      }
 
     return(
@@ -38,21 +39,21 @@ const LikeButton=()=>{
 
 const CommHead = () => {
     const loc=useContext(locationCon)
-    console.log(loc)
     const dispatch=useDispatch()
     const check=useSelector(state=>state.UserInfo)
     const questionState=useSelector((state)=>state.question.Like)
-    
+    const questionInfo=useSelector((state)=>state.questionDetails)
+
 
     useEffect(() => {
-        dispatch(checkUser({userId:loc.userId,Postid:loc.Postid}))//checking user exists in the like array
-        dispatch(getLikes({userId:loc.userId,Postid:loc.Postid}))//get Likes in the post
-        },[dispatch,loc.userId,loc.Postid])
+        dispatch(checkUser(loc))//checking user exists in the like array
+        dispatch(getLikes(loc))//get Likes in the post
+        },[dispatch,loc,loc])
         
 
     const likeButton=check.error||questionState.error
 
-
+    
     if(questionState.status==="fulfilled"){
      dispatch(postedLike({status:"idle"}))
     }
@@ -74,11 +75,11 @@ const CommHead = () => {
     <div className='head-style-comm'>
         <div className='first-two-div'>
             <div className='head-comm'>
-                <h1></h1>
+                <h1>{questionInfo.postDetails[0].Post.title}</h1>
             </div>
             <div className='account-info'>
                 <i>
-                   posted by:-
+                   posted by:-{questionInfo.postDetails[0].username}
                 </i>
             </div>
         </div>

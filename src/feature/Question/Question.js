@@ -44,7 +44,6 @@ export const dataFetch=createAsyncThunk("question/dataFetch",async(rejectWithVal
 )
 
 export const getLikes=createAsyncThunk("question/getLikes",async(data,{rejectWithValue})=>{
-  const {userId,Postid}=data
   try{
     const getLikeApi=await fetch("/getLikes",{
       method:"Post",
@@ -53,7 +52,7 @@ export const getLikes=createAsyncThunk("question/getLikes",async(data,{rejectWit
         "Content-type":"application/json"
       },
       body:JSON.stringify({
-           userId,Postid
+        data
       })      
     })
     const result=await getLikeApi.json();
@@ -73,7 +72,7 @@ export const getLikes=createAsyncThunk("question/getLikes",async(data,{rejectWit
 
 
 export const Post=createAsyncThunk("question/Post",async (like,{rejectWithValue})=>{
-  const {userId,Postid}=like
+  const {userId,postId}=like
   console.log(like)
   try{
    const res=await fetch("/PostLike",{
@@ -83,7 +82,7 @@ export const Post=createAsyncThunk("question/Post",async (like,{rejectWithValue}
      "Content-type":"application/json"
    },
    body:JSON.stringify({
-       userId,Postid
+       userId,postId
    })
  })
  const result= await res.json()

@@ -21,16 +21,16 @@ import "./Write.css"
 const Questionpost = (props) => {
   const loc=useContext(locationCon)
   const dispatch=useDispatch()
-  const state=useSelector((state)=>state.comment)
-  const comment=state.comment
-  console.log(comment)
-  const len=comment.length
   const navigate=useNavigate()
   const [showAnswer,setAnswer]=useState({Answer:""})
   
-  
+  const commentStatus=useSelector(state=>state.comment)
+  const fetchComment=useSelector(state=>state.questionDetails)
+  const len=fetchComment.postDetails[0].Comment[0].comment.length
+  const comment=fetchComment.postDetails[0].Comment[0].comment
 
- 
+
+ console.log(comment)
 
 
   let name,value;
@@ -42,21 +42,21 @@ const Questionpost = (props) => {
 
   const submitAnswer=(e)=>{// dispatch  to posting comment thunk
       e.preventDefault();
-      if(state.status==="idle"){
-      dispatch(sendComment(showAnswer))
+      if(commentStatus.status==="idle"){
+      dispatch(sendComment({comment:showAnswer,postId:loc.state.id,userId:loc.state.userId}))
       }
-      setAnswer({...showAnswer,answer:""});  
+      setAnswer({...showAnswer,Answer:""});  
   }
 
-  if(state.status==="fullfilled"){
+  if(commentStatus.status==="fullfilled"){
 //handling the messages wether its failed or success ;
-    toast(state.message,{
+    toast(commentStatus.message,{
       position:"top-center",
       autoClose:3000,
       transition:Flip
     })
       dispatch(commentPosted("idle"))//cleaning the state
-      if(state.message==="Please loggin first"){
+      if(commentStatus.message==="Please loggin first"){
       setTimeout(() => {
         navigate("/Login")
       }, 2000);}
@@ -78,9 +78,9 @@ const Questionpost = (props) => {
       {comment.map((val)=>{
         return(
         <CommAns
-          content={val.comment}
-          id={val.commenterid}
-          commentId={val._id}
+          id={val._id}
+          comment={val.comment}
+          commenterId={val.commenterid}
           reply={val.reply}
         />)
       })}

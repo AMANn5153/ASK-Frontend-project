@@ -7,47 +7,44 @@ import {AiOutlineMail} from "react-icons/ai"
 import { MdPassword} from "react-icons/md"
 import {FaHouseUser} from "react-icons/fa"
 import "./Registration.css"
-import { NavLink } from 'react-router-dom';
-
-
-
+import { Navigate, NavLink } from 'react-router-dom';
+import  {useFormik} from "formik"
+import { signUpSchema } from './Schema';
+import { useDispatch, useSelector } from 'react-redux';
+import { clean, register } from '../../feature/Log_in_out/registration';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Registration=()=>{
-    const[showField,setField]=useState({
-        username:"",email:"",Password:""
+    const initialValues={username:"",email:"",password:""}
+    const dispatch= useDispatch()
+    const {values,errors,handleBlur,handleChange,touched,handleSubmit}=useFormik({
+        initialValues,
+        validationSchema:signUpSchema,
+        onSubmit:(values,action)=>{
+        dispatch(register(values))
+        action.resetForm()
+        }   
     })
-    
-    let name,value
-    const changeHandler=(e)=>{
-        name=e.target.name;
-        value=e.target.value;
-        setField({...showField,[name]:value})
-    }
 
-    const dataT= async (e)=>{
-        e.preventDefault();
-        
-        const {username,email,Password}=showField
-        const res = await fetch("/register",{
-            method:"post",
-            headers:{
-                "Content-Type": "application/json"
-            },
-            body:JSON.stringify({
-                username,email,Password
-            })
-        })
-        const data= await res.json();
-        if(res.status===409||!data){
-            window.alert(data.error)
-        }
-        else{
-            window.alert(data.message)
-        }
-    }
-    
+    const stateRegis=useSelector(state=>state.regis)
 
-    
+    if(stateRegis.status==="fulfilled"){
+        toast(stateRegis.message,{
+            position:"top-center",
+            pauseOnHover:false,
+            theme:"light",
+          })
+          dispatch(clean())
+          Navigate("/Login")
+    }  else if(stateRegis.status==="rejected"){
+        toast(stateRegis.error,{
+            position:"top-center",
+            pauseOnHover:false,
+            theme:"light",
+          })
+          dispatch(clean())
+    }
 
     return(
         <>
@@ -61,26 +58,34 @@ const Registration=()=>{
                         <div className='form-grouhead'><Heading name="Sign Up"/></div>
                     
                         <div className='fields'>
-                        <form method="post">
+                        <form method="post" onSubmit={handleSubmit}>
                             <div className='fields-div'>
                               <p className="fields-p">UserName</p>
                                 <ImUser/>
-                                <input placeholder="UserName" name="username" autoComplete='off' value={showField.username} onChange={changeHandler}/ >
+                                <input placeholder="UserName" name="username" autoComplete='off'
+                                 value={values.username} onChange={handleChange} onBlur={handleBlur}
+                                 / >
+                               {errors.username&&touched.username?<p>{errors.username}</p>:""}
                             </div>
                         
                             <div className='fields-div'>
                              <p className="fields-p">E-MAIL</p>
                                 <AiOutlineMail/>
-                                <input placeholder="E-MAIL" name="email" autoComplete='off'  value={showField.email} onChange={changeHandler}/ >
+                                <input placeholder="E-MAIL" name="email" autoComplete='off'  
+                                value={values.email} onChange={handleChange} onBlur={handleBlur}
+                                / >
+                               {errors.email&&touched.email?<p>{errors.email}</p>:""}
                             </div>  
-                        
                             <div className='fields-div'>
                               <p className="fields-p">Password</p>
                                 <MdPassword/>
-                                <input placeholder="Password" name="Password" autoComplete='off'  value={showField.Password} onChange={changeHandler}/ >
+                                <input placeholder="Password" name="password" autoComplete='off'
+                                  value={values.password} onChange={handleChange} onBlur={handleBlur}
+                                / >
+                               {errors.password&&touched.password?<p>{errors.password}</p>:""}
                             </div>
                             <div className='fields-div'>
-                           <button className='btn-regis' onClick={dataT}>Sign Up</button>
+                           <button className='btn-regis' type='submit'>Sign Up</button>
                             </div>
                            </form>
                          </div>
@@ -99,6 +104,7 @@ const Registration=()=>{
                 
                 </div>
             </div>
+            <ToastContainer/>
         </>
     )
 }

@@ -10,8 +10,8 @@ const initialState={
 console.log(initialState)
 
 
-export const sendComment=createAsyncThunk("comments/sendComment",async(a)=>{// posting the data to database
-    const{comment,userId,Postid}=a
+export const sendComment=createAsyncThunk("comments/sendComment",async(data)=>{// posting the data to database
+    const{comment,userId,postId}=data
     console.log(comment)
     try{
         const res=await fetch("/Comment",{
@@ -21,7 +21,7 @@ export const sendComment=createAsyncThunk("comments/sendComment",async(a)=>{// p
             },
             body:JSON.stringify(
                 {
-                    comment,userId,Postid
+                    comment,userId,postId
                 }
             )
         })

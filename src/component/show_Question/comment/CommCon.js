@@ -1,13 +1,20 @@
 import {useContext} from 'react'
+import { useSelector } from 'react-redux'
 import "./comment.css"
-import { locationCon } from '../OpenQues'
 
+const style={
+  margin:"10px"
+}
 const CommCon = (props) => {
-  const loc=useContext(locationCon)
+  const details=useSelector(state=>state.questionDetails)
   return (
     <div className='commCon-style'>
-        <p>
-            {loc.content}
+        <p style={style}>
+            {details.postDetails[0].Post.problem}
+        </p>
+        {details.codeSnip!==undefined?<img src={details.codeSnip} width="350px" height="200px"/>:""}
+        <p style={style}>
+          {details.postDetails[0].Post.problemExpec}
         </p>
     </div>
   )

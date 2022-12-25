@@ -7,6 +7,7 @@ import Reply from "../feature/Reply/Reply";
 import editProfile  from "../feature/UserInfo/EditProfile";
 import ask from "../feature/ASK/Ask";
 import  questionDetails  from "../feature/Question/detail_Ques_comm";
+import regis  from "../feature/Log_in_out/registration";
 
 export const Store=configureStore({
     reducer:{
@@ -17,7 +18,8 @@ export const Store=configureStore({
         Reply,
         editProfile,
         ask,
-        questionDetails
+        questionDetails,
+        regis
     }
 })
 

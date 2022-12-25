@@ -19,7 +19,6 @@ const initialState={
 }
 
  export const checkUser=createAsyncThunk("user/checkUser",async(data,{rejectWithValue})=>{//checking the user exist in the Likesarrayof the question
-    const {userId,Postid}=data
     try{
         const fetchCheckUser=await fetch("/checkUser",{
             method:"post",
@@ -28,7 +27,7 @@ const initialState={
                 "Accept":"application/json"
             },
             body:JSON.stringify({
-                userId,Postid
+                data
             })
         })
         const result=await fetchCheckUser.json()

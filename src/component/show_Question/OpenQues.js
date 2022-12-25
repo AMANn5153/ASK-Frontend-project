@@ -23,7 +23,7 @@ const OpenQues=()=>{
 
   const QuestionInfo=useSelector(state=>state.questionDetails)
   return(
-    QuestionInfo.status==="pending"?<PendingQuestion/>:<RenderQuestion state={location.state}/>
+    QuestionInfo.status!=="fulfilled"?<PendingQuestion/>:<RenderQuestion state={location.state}/>
     )
 }
 
