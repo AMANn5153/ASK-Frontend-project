@@ -8,6 +8,7 @@ import editProfile  from "../feature/UserInfo/EditProfile";
 import ask from "../feature/ASK/Ask";
 import  questionDetails  from "../feature/Question/detail_Ques_comm";
 import regis  from "../feature/Log_in_out/registration";
+import passChange from "../feature/Log_in_out/passwordChange";
 
 export const Store=configureStore({
     reducer:{
@@ -19,7 +20,8 @@ export const Store=configureStore({
         editProfile,
         ask,
         questionDetails,
-        regis
+        regis,
+        passChange
     }
 })
 

@@ -52,8 +52,8 @@ const NavBar=()=>{
             </div>
             <div className='nav-div-list-styl'>
                 <ul className='ul-styl'>
+                {stateInOut.loginOrOut===true?<li><div className='div-link'><NavLink exact className="active_class "  to="/Ask">Ask</NavLink></div></li>:null}
                     <li><div className='div-link'><NavLink exact className="active_class "  to="/Question">Question</NavLink></div></li>
-                    <li><div className='div-link'><NavLink exact className="active_class "  to="/Ask">Ask</NavLink></div></li>
                 </ul>
             </div>
             <div className='nav-div-sm-styl'>

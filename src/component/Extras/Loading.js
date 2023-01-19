@@ -7,6 +7,12 @@ const Loading = () => {
   return (
     <>
         <div className='Hum-div-styl'>
+        <div
+        style={{display:"flex",
+                justifyContent:"center",
+                alignItems:"center"
+        }}
+        >
             {ask.map((val)=>{
                 return(
                     <Animation
@@ -14,6 +20,7 @@ const Loading = () => {
                     />
                 )
             })}
+        </div>
         </div>
     </>
   )

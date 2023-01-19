@@ -9,6 +9,8 @@ import { Route, Routes,} from 'react-router-dom';
 import Logout from './component/Login/Logout';
 import Ask from "./component/ASk/Ask";
 import UserInfo from "./component/Account/UserInfo";
+import PassChange from "./component/Login/PassChange";
+import EnterPassChange from "./component/Login/EnterPassChange";
 
 const Rout=()=>{
     return(
@@ -22,7 +24,9 @@ const Rout=()=>{
                 <Route  path='/Logout' element={<Logout/>}/>
                 <Route  path='/OpenQues' element={<OpenQues/>}/>    
                 <Route  path='/Ask' element={<Ask/>}/>     
-                <Route path="/UserInfo" element={<UserInfo/>}/>     
+                <Route path="/UserInfo" element={<UserInfo/>}/>  
+                <Route path="/Login/PasswordChange" element={<PassChange/>}/>   
+                <Route path="/Login/EnterPassChange" element={<EnterPassChange/>}/>   
         </Routes>
     </BrowserRouter>
         </>

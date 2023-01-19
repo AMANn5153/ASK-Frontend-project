@@ -3,7 +3,7 @@ import NavBar from '../Navbar/Navbar'
 import "./Login.css"
 import login from "./login.svg"
 import Heading from '../Extras/Heading'
-import {useNavigate} from "react-router-dom"
+import {useNavigate,NavLink} from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
@@ -71,6 +71,8 @@ const Login = () => {
                         </div>
                         <div className='login-img'>
                         <img src={login} alt="login.svg"/>
+                        <NavLink to="/Login/PasswordChange">forget password ?</NavLink>
+                      
                         </div>
                 </div>
             </div>
