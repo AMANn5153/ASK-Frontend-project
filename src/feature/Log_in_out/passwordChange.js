@@ -6,16 +6,16 @@ const initialState={
 }
 
 export const sendNewPassword=createAsyncThunk("change/sendNewPassword",async(data,{rejectWithValue})=>{
-    const {password,email}=data
+    const {password,email,token}=data
     try{
         const res=await fetch("/changePass",{
-            method:"Put",
-            header:{
+            method:"put",
+            headers:{
                 "Accepts":"Application/Json",
                 "Content-type":"Application/Json"
             },
             body:JSON.stringify({
-                password,email
+                password,email,token
             })
         })
         const result=await res.json()
@@ -68,7 +68,6 @@ export const passChange=createSlice({
         resetState(state){
             state.message=""
             state.status=""
-            state.value=false
     }},
     extraReducers(builder){
         builder.addCase(sendEmail.pending,(state,action)=>{
@@ -77,11 +76,20 @@ export const passChange=createSlice({
         .addCase(sendEmail.fulfilled,(state,action)=>{
             state.status="fulfilled"
             state.message=action.payload.message;
-            state.value=action.payload.value;
         })
         .addCase(sendEmail.rejected,(state,action)=>{
             state.status="rejected"
             state.message=action.payload
+        }).addCase(sendNewPassword.pending,(state,action)=>{
+            state.status="pending"
+        })
+        .addCase(sendNewPassword.fulfilled,(state,action)=>{
+            state.status="fulfilled"
+            state.message=action.payload.message
+        })
+        .addCase(sendNewPassword.rejected,(state,action)=>{
+            state.status="rejected"
+            state.message=action.payload.message
         })
     }
 })
