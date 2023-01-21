@@ -1,13 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState={
-    id:"",
-    comment:[],
     message:"",
-    Like:0,
     status:"idle"
 }
-console.log(initialState)
 
 
 export const sendComment=createAsyncThunk("comments/sendComment",async(data)=>{// posting the data to database
@@ -67,7 +63,8 @@ export const comments=createSlice({
     initialState,
     reducers:{
         commentPosted:(state,action)=>{
-            state.status=action.payload;
+            state.status="idle";
+            state.message="";
         },   
         postLike:(state,action)=>{
             state.Like=action.payload

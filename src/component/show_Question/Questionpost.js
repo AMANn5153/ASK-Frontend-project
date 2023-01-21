@@ -18,11 +18,11 @@ import "./Write.css"
 
 
 
-const Questionpost = (props) => {
+const Questionpost = () => {
   const loc=useContext(locationCon)
   const dispatch=useDispatch()
   const navigate=useNavigate()
-  const [showAnswer,setAnswer]=useState({Answer:""})
+  const [showAnswer,setAnswer]=useState("")
   
   const commentStatus=useSelector(state=>state.comment)
   const fetchComment=useSelector(state=>state.questionDetails)
@@ -30,22 +30,17 @@ const Questionpost = (props) => {
   const comment=fetchComment.postDetails[0].Comment[0].comment
 
 
- console.log(comment)
 
 
-  let name,value;
+ 
   const answerChange=(e)=>{
-      name=e.target.name;
-      value=e.target.value;
-    setAnswer({...showAnswer,[name]:value})
+    setAnswer(e.target.value)
   }
 
   const submitAnswer=(e)=>{// dispatch  to posting comment thunk
-      e.preventDefault();
       if(commentStatus.status==="idle"){
       dispatch(sendComment({comment:showAnswer,postId:loc.state.id,userId:loc.state.userId}))
       }
-      setAnswer({...showAnswer,Answer:""});  
   }
 
   if(commentStatus.status==="fullfilled"){
@@ -56,10 +51,7 @@ const Questionpost = (props) => {
       transition:Flip
     })
       dispatch(commentPosted("idle"))//cleaning the state
-      if(commentStatus.message==="Please loggin first"){
-      setTimeout(() => {
-        navigate("/Login")
-      }, 2000);}
+      setAnswer("")
   }
 
   
@@ -113,18 +105,16 @@ const Questionpost = (props) => {
                     </div>
                 </div>
                 <div className='write-div-bod'>
-                    <textarea className='write-text' placeholder="Start writing the stuff from here"  name="comment" value={showAnswer.answer} 
+                    <textarea className='write-text' placeholder="Start writing the stuff from here"  name="comment" value={showAnswer} 
                     onChange={answerChange} >
                     </textarea>
                 </div>
             </div>
             <div className='btn-div-post'>
                 <button className='post-btn' onClick={submitAnswer}>POST</button>
-                <ToastContainer />
-
             </div>
-
     </div>
+    <ToastContainer />
  </>
   )
 }

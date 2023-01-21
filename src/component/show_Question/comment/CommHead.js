@@ -8,8 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react'
 import { locationCon } from '../OpenQues'
-import { fetchDetails,getCodeSnip } from '../../../feature/Question/detail_Ques_comm'
-
+import TimeStamp from '../../Extras/TimeStamp'
 
 const LikeButton=()=>{
     const loc=useContext(locationCon)
@@ -43,7 +42,9 @@ const CommHead = () => {
     const check=useSelector(state=>state.UserInfo)
     const questionState=useSelector((state)=>state.question.Like)
     const questionInfo=useSelector((state)=>state.questionDetails)
+    console.log(questionInfo)
 
+    
 
     useEffect(() => {
         dispatch(checkUser(loc))//checking user exists in the like array
@@ -85,9 +86,7 @@ const CommHead = () => {
         </div>
         <div className='two-two-style'>
             <div className='upload-time-display'>
-                <p>
-
-                </p>
+                <TimeStamp postTime={loc.state.date}/>
             </div>
             <div className='like-button'>
                 {likeButton===true?<DisableButton/>:<LikeButton/>}

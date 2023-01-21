@@ -5,14 +5,15 @@ import "./comment.css"
 const style={
   margin:"10px"
 }
-const CommCon = (props) => {
+const CommCon = () => {
   const details=useSelector(state=>state.questionDetails)
+  console.log(details)
   return (
     <div className='commCon-style'>
         <p style={style}>
             {details.postDetails[0].Post.problem}
         </p>
-        {details.codeSnip!==undefined?<img src={details.codeSnip} width="350px" height="200px"/>:""}
+        {details.codeSnip!==undefined?<img src={details.codeSnip} width="350px" height="200px"/>:null}
         <p style={style}>
           {details.postDetails[0].Post.problemExpec}
         </p>

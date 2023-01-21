@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import Loading from '../Extras/Loading';
 
 
-const FulFilledQuestion=(props)=>{
+const FulFilledQuestion=({data})=>{
   return(
     <>
        <div className='Question'>
@@ -16,7 +16,7 @@ const FulFilledQuestion=(props)=>{
             </div>
             <div className='question-body'>
             <div className='heading-ques'><h1>Question</h1></div>
-            {props.data.map((val,index)=>{
+            {data.map((val,index)=>{
                return(
                       <QuesPage 
                       key={index}
@@ -25,6 +25,7 @@ const FulFilledQuestion=(props)=>{
                       heading={val.title}
                       content={val.problem}
                       userId={val.userId}
+                      date={val.date}
                    />
               )   
         })}
@@ -51,7 +52,7 @@ const Question = () => {
     if(stateData.post.length===0){
     dispatch(dataFetch())
   }
- },[dispatch,stateData.post.length])
+ },[])
    console.log(stateData)
 
   return (

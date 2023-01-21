@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import TimeStamp from '../Extras/TimeStamp'
 import "./QuesPage.css"
 
 const QuesPage = (props) => {
@@ -13,11 +14,15 @@ const QuesPage = (props) => {
                  { 
                   id:props.id,
                   userId:props.userId,
+                  date:props.date
                   }
                   }><h1 style={{fontWeight:"normal"}}>{props.heading}</h1></NavLink>
             </div>
               <div className='quespage-info'>
                     <i>posted by :-{props.username}</i>
+              </div>
+              <div className='quespage-info'>
+                    <TimeStamp postTime={props.date}/>
               </div>
           </div>
               <div className='quespage-body'>

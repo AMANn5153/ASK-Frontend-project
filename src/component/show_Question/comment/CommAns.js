@@ -44,12 +44,12 @@ const CommAns = (props) => {
   
  
   if(replyState.status==="fulfilled"){
+    dispatch(cleanReplyState())
     toast(replyState.message,{
       pauseOnHover:true,
       theme:"light",
       position:"top-center"
     })
-    dispatch(cleanReplyState())
   }
   else if(replyState.status==="rejected"){
     toast(replyState.message,{

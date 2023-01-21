@@ -26,6 +26,7 @@ const Preview = () => {
 
     const submitPost=()=>{// submitting all the the data by appending data to formData
         const formData=new FormData()
+        // appending data in form data object
         formData.append("codeSnip",data.image)
         formData.append("title",stateAsk.title)
         formData.append("problem",stateAsk.questionDes)
@@ -37,7 +38,7 @@ const Preview = () => {
     }
 
 
-        // handling the the message after posting the  question
+       // handling the the message after posting the  question
     if(stateAsk.status==="pending"){
         toast(stateAsk.message,{
             pauseOnHover:true,

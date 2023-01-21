@@ -5,7 +5,7 @@ import Questionpost from './Questionpost'
 import "./Question.css"
 import "./OpenQues.css"
 import { createContext,useEffect } from 'react'
-import { fetchDetails } from '../../feature/Question/detail_Ques_comm'
+import { cleanUpState, fetchDetails } from '../../feature/Question/detail_Ques_comm'
 import { getCodeSnip } from '../../feature/Question/detail_Ques_comm'
 import { PendingQuestion } from './Question'
 import { useSelector,useDispatch } from 'react-redux'
@@ -19,6 +19,9 @@ const OpenQues=()=>{
   useEffect(() => {//getting all the comments for the question
     dispatch(fetchDetails(location.state.id))
     dispatch(getCodeSnip(location.state.id))
+    return()=>{
+      dispatch(cleanUpState())
+    }
   }, [dispatch,location.state.id])
 
   const QuestionInfo=useSelector(state=>state.questionDetails)

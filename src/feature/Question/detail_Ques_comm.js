@@ -5,7 +5,7 @@ const initialState={
     codeSnip:""
 }
 
-export const getCodeSnip=createAsyncThunk("Details/getCodeSnip",async(id)=>{
+export const getCodeSnip=createAsyncThunk("Details/getCodeSnip",async(id,{rejectWithValue})=>{
     try{
         const res=await fetch("/getCodeSnip",{
             method:"post",
@@ -17,9 +17,13 @@ export const getCodeSnip=createAsyncThunk("Details/getCodeSnip",async(id)=>{
                 id
             })
         })
+        if(res?.status===200){
         const result=await res.blob()
         const codeSnip_URL=URL.createObjectURL(result)
-        return codeSnip_URL
+        return codeSnip_URL}
+        else{
+            return rejectWithValue(undefined)
+        }
     }
     catch(e){
         console.log(e)
@@ -50,8 +54,9 @@ export const fetchDetails=createAsyncThunk("Details/fetchDetails",async(id)=>{
 export const questionDetails=createSlice({
     name:"Details",
     initialState,
-    reducers:{
-
+    reducers:{cleanUpState:(state,action)=>{
+        state.codeSnip=""
+    }
     },
     extraReducers(builder){
         builder.addCase(fetchDetails.pending,(state,action)=>{
@@ -67,7 +72,12 @@ export const questionDetails=createSlice({
         .addCase(getCodeSnip.fulfilled,(state,action)=>{
             state.codeSnip=action.payload
         })
+        .addCase(getCodeSnip.rejected,(state,action)=>{
+            state.codeSnip=action.payload
+        })
     }
 })
+
+export const {cleanUpState}=questionDetails.actions
 
 export default questionDetails.reducer

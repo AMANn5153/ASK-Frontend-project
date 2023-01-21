@@ -29,6 +29,7 @@ export const ask=createSlice({
     extraReducers(builder){
         builder.addCase(postQuestion.pending,(state,action)=>{
             state.status="pending"
+            state.message="posting..."
         })
         .addCase(postQuestion.fulfilled,(state,action)=>{
             state.status="fulfilled"
