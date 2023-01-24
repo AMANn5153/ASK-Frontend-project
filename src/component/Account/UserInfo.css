@@ -28,6 +28,8 @@
 }
 .account-body-info{
     flex-grow: 4;
+    border:1px solid rgb(255, 220, 156);
+    border-radius:15px
 }
 .account-body-button{
     flex-grow: 1;

@@ -13,7 +13,6 @@ const initialState={
 
 
 export const postAddInfo=createAsyncThunk("userEdit/postAddInfo",async(data,{rejectWithValue})=>{
-    console.log(data)
     try{
         const addInfo= await fetch("/AddInfo",{
             method:"put",

@@ -9,12 +9,10 @@ const AboutUs=(props)=>{
          <div className='head'>{props.head}</div>
          <div className='abus-con'>
             <div className='back'>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-             exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-               pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
+            <h2 >Explore and Ask your doubts.<br/><br/>
+            Website is hub for seekers who wants to ask question <br/><br/>
+            discuss the question and help others....
+            </h2>
         </div>
         </div>
         </div>

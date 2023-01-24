@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, isRejectedWithValue } from "@reduxjs/toolkit";
 
 const initialState={
     message:"",
@@ -6,9 +6,9 @@ const initialState={
 }
 
 
-export const sendComment=createAsyncThunk("comments/sendComment",async(data)=>{// posting the data to database
+export const sendComment=createAsyncThunk("comments/sendComment",async(data,{rejectWithValue})=>{
+    // posting the data to database
     const{comment,userId,postId}=data
-    console.log(comment)
     try{
         const res=await fetch("/Comment",{
             method:"put",
@@ -22,40 +22,42 @@ export const sendComment=createAsyncThunk("comments/sendComment",async(data)=>{/
             )
         })
         const result=await res.json();
-        if(result){
-            console.log(result);
+        if(res.status===200){
             return result
+        }
+        else{
+            rejectWithValue(result)
         }
     }
     catch(e){
-        throw new Error(e)
-    }
-})
-
-export const fetchingComments=createAsyncThunk("comments/fetchingComments",async(QuesData)=>{
-    const {id,Postid}=QuesData
-    try{
-    const fetchComm=await fetch("/ShowComment",{
-        method:"post",
-        headers:{
-            "content-type":"application/json",
-            "Accept":"application/json"
-        },
-        body:JSON.stringify({
-            id, Postid
-        })
-    })
-    const result=await fetchComm.json()
-    if(result ){
-        return result;
-    }
-    }
-    catch(e){
         console.log(e)
-        return e;
     }
-
 })
+
+// export const fetchingComments=createAsyncThunk("comments/fetchingComments",async(QuesData)=>{
+//     const {id,Postid}=QuesData
+//     try{
+//     const fetchComm=await fetch("/ShowComment",{
+//         method:"post",
+//         headers:{
+//             "content-type":"application/json",
+//             "Accept":"application/json"
+//         },
+//         body:JSON.stringify({
+//             id, Postid
+//         })
+//     })
+//     const result=await fetchComm.json()
+//     if(result ){
+//         return result;
+//     }
+//     }
+//     catch(e){
+//         console.log(e)
+//         return e;
+//     }
+
+// })
 
 
 export const comments=createSlice({
@@ -66,22 +68,22 @@ export const comments=createSlice({
             state.status="idle";
             state.message="";
         },   
-        postLike:(state,action)=>{
-            state.Like=action.payload
-        } 
     },
     extraReducers(builder){
         builder.addCase(sendComment.pending,(state)=>{// loading status
             state.status="loading"
         })
         .addCase(sendComment.fulfilled,(state,action)=>{// fulfilled status 
-           state.message=action.payload.message
-           state.status="fullfilled"
-        })
-        .addCase(fetchingComments.fulfilled,(state,action)=>{
-            state.comment=action.payload.comment
-            state.id=action.payload._id
-        })
+        //    state.message=action.payload.message
+           state.status="fulfilled"
+        }).addCase(sendComment.rejected,(state,action)=>{// rejected status 
+            state.message=action.payload.error
+            state.status="rejected"
+         })
+        // .addCase(fetchingComments.fulfilled,(state,action)=>{
+        //     state.comment=action.payload.comment
+        //     state.id=action.payload._id
+        // })
     }
 })
 

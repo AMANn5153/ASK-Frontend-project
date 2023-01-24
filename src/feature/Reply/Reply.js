@@ -1,10 +1,7 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState={
-    Reply:{
-      rep:[],
-      status:"idle"
-    },
+    
     status:"idle",
     error:"",
     message:""
@@ -36,28 +33,7 @@ export const postReply=createAsyncThunk("reply/postReply",async(data,{rejectWith
     }
 })
 
-export const repliesData=createAsyncThunk("reply/repliesData",async(data)=>{
-    const {id}=data
-    try{
-        const fetchReply=await fetch("/ShowReply",{
-            method:"Post",
-            headers:{
-                "content-type":"application/json",
-                "Accept":"Application/json"
-            },
-            body:JSON.stringify({
-                id
-            })
-        })
-        const result=await fetchReply.json()
-        if(fetchReply.status===202){
-            return result
-        }
-    }
-    catch(e){
-        console.log(e)
-    }
-})
+
 
 
 export const Reply=createSlice({
@@ -76,7 +52,6 @@ export const Reply=createSlice({
     extraReducers(builder){
         builder.addCase(postReply.pending,(state)=>{
             state.status="pending"
-            state.message="saving"
         })
         .addCase(postReply.fulfilled,(state,action)=>{
             state.status="fulfilled"
@@ -86,12 +61,7 @@ export const Reply=createSlice({
             state.status="rejected"
             state.error=action.payload.message
         })
-        .addCase(repliesData.fulfilled,(state,action)=>{
-            console.log("repliesData",action)
-            state.Reply.status="fulfilled"
-            state.Reply.rep=state.Reply.rep.concat(action.payload.comment[0].reply)
-            
-        })
+       
     }
 
 })

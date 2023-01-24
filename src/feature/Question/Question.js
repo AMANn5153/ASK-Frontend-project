@@ -143,7 +143,9 @@ export const Question=createSlice({
         })
         .addCase(getLikes.fulfilled,(state,action)=>{
           state.status="fulfilled"
+          if(action.payload.length!==0){//if there is no Likes
           state.Like.Likes=action.payload[0].Post[0].Likes
+          }
         })
         .addCase(getLikes.rejected,(state,action)=>{
           state.status="rejected"

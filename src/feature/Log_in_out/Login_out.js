@@ -7,7 +7,7 @@ const initialState={
 }
 
 export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
-    console.log("hi")
+   
     try{
     const res=await fetch("/CheckLogin",{
         method:"get",
@@ -42,8 +42,6 @@ export const postLogin=createAsyncThunk("LoginOut/postLogin",async(data,{rejectW
         return rejectWithValue(result)
     }
     else{
-        console.log(result)
-
      return result
     }
 })
@@ -54,7 +52,6 @@ export const LoginOut=createSlice({
     initialState,
     reducers:{
         Logged:(state,action)=>{
-            console.log(action)
             state.loginOrOut=action.payload.loginOrOut
         },
         out:(state,action)=>{
@@ -86,7 +83,6 @@ export const LoginOut=createSlice({
             }
         })
         .addCase(checkLogin.rejected,(state,action)=>{
-            console.log(action)
             state.status="rejected"
             state.loginOrOut=false
             state.message=action.payload

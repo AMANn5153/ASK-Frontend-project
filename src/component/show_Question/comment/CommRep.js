@@ -1,6 +1,5 @@
-import React,{useEffect, useMemo, useState}  from 'react'
+import React,{useEffect}  from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { cleanTheState } from '../../../feature/Reply/Reply'
 import { fetchUser } from '../../../feature/UserInfo/UserInfo'
 import "./comment.css"
 
@@ -10,7 +9,7 @@ const CommRep = (props) => {
   const dispatch=useDispatch()
   
   
-  useMemo(() => {
+  useEffect(() => {
     dispatch(fetchUser({id:props.data.replyId}))
   }, [dispatch,props.data.replyId])
   

@@ -68,7 +68,6 @@ const initialState={
 })
 
 export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectWithValue})=>{
-    console.log(data)
     try{
         const addInfo= await fetch("/AddInfo",{
             method:"put",
@@ -126,10 +125,8 @@ export const accountUpdates=createAsyncThunk("user/accountUpdates",async(data)=>
                 about
             })            
         })
-        console.log(accountDetails)
         const res=await accountDetails.json()
         if(res.status===201){
-            console.log(res)
             return res
         }
     }
@@ -171,7 +168,6 @@ export const getStats=createAsyncThunk("user/getStats",async()=>{
         })
         const res=await aggregate.json()
         if(aggregate.status===200){
-            console.log(res)
             return res
         }
     }
@@ -195,7 +191,6 @@ export const profilePic=createAsyncThunk("user/profilePic",async(pic)=>{
         const res=await uploadPic.blob()
         const resURL=URL.createObjectURL(res)
         if(uploadPic?.status===202){
-            console.log(resURL)
             return resURL
         }
     }
@@ -219,7 +214,7 @@ export const delQues=createAsyncThunk("user/delQues",async (idQues)=>{
     })
     const result=await res.json()
     if(res?.status===200){
-        console.log(result)
+        return result
     }
 
 })
@@ -230,6 +225,10 @@ export const UserInfo=createSlice(
      name:"user",
      initialState,
      reducers:{
+        clearUserInfo:(state)=>{
+            state.status="idle";
+            state.userinfo="";
+        },
         sameUserError:(state,action)=>{
             state.error=action.payload.error
         },
@@ -246,8 +245,7 @@ export const UserInfo=createSlice(
                state.status="pending"
         })
         .addCase(fetchUser.fulfilled,(state,action)=>{
-            state.status="fullfilled"
-            console.log(action)
+            state.status="fulfilled"
             state.userinfo=action.payload.username
         })
         .addCase(fetchUser.rejected,(state,action)=>{
@@ -259,9 +257,6 @@ export const UserInfo=createSlice(
         .addCase(checkUser.rejected,(state,action)=>{
             state.status="rejected"
             state.error=action.payload.val
-        })
-        .addCase(checkUser.fulfilled,(state,action)=>{
-            console.log(action.payload)
         })
         .addCase(accountFetchUser.fulfilled,(state,action)=>{
             state.accountUserInfo[0].status="fulfilled"
@@ -292,5 +287,5 @@ export const UserInfo=createSlice(
     }
 )
 
-export const {sameUserError,clearTheInfo}=UserInfo.actions
+export const {sameUserError,clearTheInfo,clearUserInfo}=UserInfo.actions
 export default UserInfo.reducer;

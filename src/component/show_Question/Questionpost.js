@@ -9,26 +9,27 @@ import {ImListNumbered} from 'react-icons/im'
 import {MdFormatListBulleted} from 'react-icons/md'
 import {AiOutlineFontColors} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { commentPosted,sendComment,fetchingComments} from '../../feature/Comments/comments'
-import { useNavigate } from 'react-router'
+import {  fetchDetails } from '../../feature/Question/detail_Ques_comm'
+import { commentPosted,sendComment} from '../../feature/Comments/comments'
 import { locationCon } from './OpenQues';
 import "./Write.css"
 
 
+
+const MemoHead=React.memo(CommHead)
+const MemoCon=React.memo(CommCon)
+const MemoAns=React.memo(CommAns)
 
 
 
 const Questionpost = () => {
   const loc=useContext(locationCon)
   const dispatch=useDispatch()
-  const navigate=useNavigate()
   const [showAnswer,setAnswer]=useState("")
-  
   const commentStatus=useSelector(state=>state.comment)
   const fetchComment=useSelector(state=>state.questionDetails)
   const len=fetchComment.postDetails[0].Comment[0].comment.length
   const comment=fetchComment.postDetails[0].Comment[0].comment
-
 
 
 
@@ -38,20 +39,19 @@ const Questionpost = () => {
   }
 
   const submitAnswer=(e)=>{// dispatch  to posting comment thunk
-      if(commentStatus.status==="idle"){
-      dispatch(sendComment({comment:showAnswer,postId:loc.state.id,userId:loc.state.userId}))
-      }
+      dispatch(sendComment({comment:showAnswer,postId:loc.state.id,userId:loc.state.userId}))  
+      setAnswer("") 
+      dispatch(fetchDetails(loc.state.id))
   }
 
-  if(commentStatus.status==="fullfilled"){
+  if(commentStatus.status==="fulfilled"){
 //handling the messages wether its failed or success ;
-    toast(commentStatus.message,{
+    toast("posted",{
       position:"top-center",
-      autoClose:3000,
+      autoClose:1000,
       transition:Flip
     })
       dispatch(commentPosted("idle"))//cleaning the state
-      setAnswer("")
   }
 
   
@@ -62,18 +62,19 @@ const Questionpost = () => {
     <div style={{
       margin:"10px",
     }}>
-      <CommHead
+      <MemoHead
       />
-      <CommCon
+      <MemoCon
       />
       <h1 style={{fontWeight:"normal"}}>{len} {len>1?"Answers":"Answer"}</h1>
       {comment.map((val)=>{
         return(
-        <CommAns
+        <MemoAns
           id={val._id}
           comment={val.comment}
           commenterId={val.commenterid}
           reply={val.reply}
+          
         />)
       })}
     

@@ -8,7 +8,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { postLogin,Logged,out } from '../../feature/Log_in_out/Login_out'
-import { PendingQuestion } from '../show_Question/Question'
 
 const Login = () => {
   const navigate=useNavigate()
@@ -33,10 +32,8 @@ const Login = () => {
     setField({...showField,email:"",Password:""})
   }
 
-  if(state.status==="pending"){
-    <PendingQuestion/>
-  }
-  else if(state.status==="fulfilled"){
+  
+   if(state.status==="fulfilled"){
     dispatch(Logged({loginOrOut:true}))
     navigate("/") 
   }

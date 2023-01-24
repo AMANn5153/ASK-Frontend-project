@@ -42,7 +42,6 @@ const CommHead = () => {
     const check=useSelector(state=>state.UserInfo)
     const questionState=useSelector((state)=>state.question.Like)
     const questionInfo=useSelector((state)=>state.questionDetails)
-    console.log(questionInfo)
 
     
 

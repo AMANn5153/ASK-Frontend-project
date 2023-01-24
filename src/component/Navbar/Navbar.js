@@ -38,22 +38,25 @@ const NavBar=()=>{
         dispatch(checkLogin())}
     }, [dispatch,stateInOut.loginOrOut])
 
-    console.log(stateInOut)
     return(
         <>
         <nav className='nav-div-styl'>
         {/* <div className="nav-div-styl"> */}
             <div className='nav-div-head-styl'>
            <Link to='/'> {
-                ask.map((val)=>{return(
-                    <Animation name={val}/>)
+                ask.map((val,index)=>{return(
+                    <Animation 
+                    key={index}
+                    name={val}
+
+                    />)
                 })}
             </Link>
             </div>
             <div className='nav-div-list-styl'>
                 <ul className='ul-styl'>
-                {stateInOut.loginOrOut===true?<li><div className='div-link'><NavLink exact className="active_class "  to="/Ask">Ask</NavLink></div></li>:null}
-                    <li><div className='div-link'><NavLink exact className="active_class "  to="/Question">Question</NavLink></div></li>
+                {stateInOut.loginOrOut===true?<li><div className='div-link'><NavLink exact="true" className="active_class "  to="/Ask">Ask</NavLink></div></li>:null}
+                    <li><div className='div-link'><NavLink exact="true" className="active_class "  to="/Question">Question</NavLink></div></li>
                 </ul>
             </div>
             <div className='nav-div-sm-styl'>

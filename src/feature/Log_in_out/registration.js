@@ -19,7 +19,6 @@ export const register = createAsyncThunk("regis/register",async(data,{rejectWith
     })
     const result= await res.json()
     if(res.status===201){
-        console.log(result)
         return result
     }
     else{

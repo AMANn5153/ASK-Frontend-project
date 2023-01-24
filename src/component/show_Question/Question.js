@@ -53,7 +53,6 @@ const Question = () => {
     dispatch(dataFetch())
   }
  },[])
-   console.log(stateData)
 
   return (
     <>

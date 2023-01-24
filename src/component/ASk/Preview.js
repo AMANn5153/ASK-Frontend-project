@@ -39,14 +39,8 @@ const Preview = () => {
 
 
        // handling the the message after posting the  question
-    if(stateAsk.status==="pending"){
-        toast(stateAsk.message,{
-            pauseOnHover:true,
-            theme:"light",
-            position:"top-center"
-        })
-    }
-    else if(stateAsk.status==="fulfilled"){
+   
+    if(stateAsk.status==="fulfilled"){
         toast(stateAsk.message,{
             pauseOnHover:true,
             theme:"light",

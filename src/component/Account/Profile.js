@@ -52,7 +52,7 @@ const About=()=>{
       <p>write about your self what are your interests and what kind of work you do</p>
       <textarea style={style.txt} onChange={handleChange} name="about" value={showAbout} >
         </textarea>
-        <button style={style.btn} onClick={()=>submitAbout}>Post</button>
+        <button style={style.btn} onClick={submitAbout}>Post</button>
     </>
   )
 
@@ -78,7 +78,6 @@ const Profile = (props) => {
   const delPost=(quesId)=>{
     dispatch(delQues(quesId))
   }
-  console.log(info.about)
 
   return (
     <>

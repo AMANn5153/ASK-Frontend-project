@@ -7,7 +7,6 @@ const style={
 }
 const CommCon = () => {
   const details=useSelector(state=>state.questionDetails)
-  console.log(details)
   return (
     <div className='commCon-style'>
         <p style={style}>

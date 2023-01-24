@@ -52,7 +52,6 @@ export const postQuestion=createAsyncThunk("Ask/postQuestion",async(data)=>{
         body:data
        })
        const result=await res.json()
-       console.log(result)
     }
     catch(e){
         console.log(e)

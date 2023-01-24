@@ -7,6 +7,7 @@ import Saves from "./Saves"
 import { useSelector, useDispatch } from 'react-redux'
 import { accountFetchUser,clearTheInfo,profilePic,getProfilePic} from '../../feature/UserInfo/UserInfo'
 import Edit from './Edit'
+import Footer from '../Footer/Footer'
 
 const style={
   imagediv:{
@@ -18,7 +19,8 @@ const style={
  
   heading:{
     fontWeight:"normal",
-    fontSize:"larger"
+    fontSize:"larger",
+    padding:"10px"
     
   }
 }
@@ -82,7 +84,6 @@ const UserInfo = () => {
       triggerSubmit.current=false
     }
   
-  console.log(info)
 
   return (
     <>
@@ -99,9 +100,9 @@ const UserInfo = () => {
           <div ><button className='userInfo-btn'>upload<input type="file" onChange={handleTheChange}></input></button></div>
         </div>
             <div className='account-body-info'>
-              <h1 style={style.heading}>{info.username}</h1>
-              <h2 style={style.heading}>{info.email}</h2>
-              <h3 style={style.heading}>this is test</h3>
+              <i style={style.heading}>{info.username}</i><br/><br/>
+              <i style={style.heading}>{info.email}</i><br/><br/>
+              <i style={style.heading}>{info.about}</i><br/><br/>
               <p></p>
             </div>
             <div className='account-body-button'>
@@ -126,7 +127,7 @@ const UserInfo = () => {
         </div>
         </div>
         <div className="account-footer">
-          <h1>footer</h1>
+          <h1><Footer/></h1>
         </div>
     </div>
         

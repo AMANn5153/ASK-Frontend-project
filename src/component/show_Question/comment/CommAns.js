@@ -2,16 +2,16 @@ import React,{useEffect, useMemo, useState} from 'react'
 import "./comment.css"
 import CommRep from './CommRep'
 import  { fetchUser } from '../../../feature/UserInfo/UserInfo'
-import {AiOutlineLike} from "react-icons/ai"
 import { useDispatch, useSelector } from 'react-redux'
-import { postReply,cleanReplyState, repliesData, cleanTheState} from '../../../feature/Reply/Reply'
-import { toast, ToastContainer } from 'react-toastify'
+import { postReply,cleanReplyState} from '../../../feature/Reply/Reply'
+import {  fetchDetails } from '../../../feature/Question/detail_Ques_comm'
+import { toast,} from 'react-toastify'
 import { useContext } from 'react'
 import { locationCon } from '../OpenQues'
 
 
 const CommAns = (props) => {
-  const loc=useContext(locationCon)
+  const loc =useContext(locationCon)
   const [showReply,setReply]=useState({Reply:""})
   const [showLike,setLike]=useState(0)
   const dispatch=useDispatch()
@@ -34,6 +34,7 @@ const CommAns = (props) => {
   const submitReply=()=>{
     dispatch(postReply({commentId:props.id,message:showReply}))
     setReply({...showReply,Reply:""})
+    dispatch(fetchDetails(loc.state.id))
   }
 
   const postLike=()=>{
@@ -48,6 +49,7 @@ const CommAns = (props) => {
     toast(replyState.message,{
       pauseOnHover:true,
       theme:"light",
+      autoClose:1000,
       position:"top-center"
     })
   }
@@ -55,6 +57,7 @@ const CommAns = (props) => {
     toast(replyState.message,{
       pauseOnHover:true,
       theme:"light",
+      autoClose:1000,
       position:"top-center"
     })
     dispatch(cleanReplyState())

@@ -5,6 +5,8 @@ const initialState={
     codeSnip:""
 }
 
+
+// called from OpenQues components in Question folder of component folder
 export const getCodeSnip=createAsyncThunk("Details/getCodeSnip",async(id,{rejectWithValue})=>{
     try{
         const res=await fetch("/getCodeSnip",{
@@ -18,11 +20,12 @@ export const getCodeSnip=createAsyncThunk("Details/getCodeSnip",async(id,{reject
             })
         })
         if(res?.status===200){
-        const result=await res.blob()
-        const codeSnip_URL=URL.createObjectURL(result)
-        return codeSnip_URL}
+        const result=await res.blob()//blob() returns blob constructor storing files data that with res in byte form
+        const codeSnip_URL=URL.createObjectURL(result)//creating a url for blob object 
+        return codeSnip_URL
+        }
         else{
-            return rejectWithValue(undefined)
+            return rejectWithValue(undefined)// if there is no codeSnip then just return undefined as rejectedValue
         }
     }
     catch(e){

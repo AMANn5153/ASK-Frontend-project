@@ -13,10 +13,11 @@ const Loading = () => {
                 alignItems:"center"
         }}
         >
-            {ask.map((val)=>{
+            {ask.map((val,index)=>{
                 return(
                     <Animation
                         name={val}
+                        key={index}
                     />
                 )
             })}
