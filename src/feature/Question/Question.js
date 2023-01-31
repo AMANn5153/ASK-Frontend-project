@@ -21,7 +21,7 @@ const initialState={
 
 export const dataFetch=createAsyncThunk("question/dataFetch",async(rejectWithValue)=>{
     try{
-     const res=await fetch("https://ask-backend-chwt.onrender.com/Question",{
+     const res=await fetch("https://askbackend-ek02.onrender.com/Question",{
       
      method:"GET",
      headers:{
@@ -46,7 +46,7 @@ export const dataFetch=createAsyncThunk("question/dataFetch",async(rejectWithVal
 
 export const getLikes=createAsyncThunk("question/getLikes",async(data,{rejectWithValue})=>{
   try{
-    const getLikeApi=await fetch("https://ask-backend-chwt.onrender.com/getLikes",{
+    const getLikeApi=await fetch("https://askbackend-ek02.onrender.com/getLikes",{
       
       method:"Post",
       headers:{
@@ -77,7 +77,7 @@ export const Post=createAsyncThunk("question/Post",async (like,{rejectWithValue}
   const {userId,postId}=like
   console.log(like)
   try{
-   const res=await fetch("https://ask-backend-chwt.onrender.com/PostLike",{
+   const res=await fetch("https://askbackend-ek02.onrender.com/PostLike",{
     
    method:"Post",
    headers:{

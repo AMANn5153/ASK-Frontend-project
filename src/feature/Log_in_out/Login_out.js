@@ -9,7 +9,7 @@ const initialState={
 export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
    
     try{
-    const res=await fetch("https://ask-backend-chwt.onrender.com/CheckLogin",{
+    const res=await fetch("https://askbackend-ek02.onrender.com/CheckLogin",{
     
         method:"get",
         headers:{
@@ -27,7 +27,7 @@ export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
 
 export const postLogin=createAsyncThunk("LoginOut/postLogin",async(data,{rejectWithValue})=>{
     const {email,Password}=data
-    const res= await fetch("https://ask-backend-chwt.onrender.com/Login",{
+    const res= await fetch("https://askbackend-ek02.onrender.com/Login",{
     
       method:"post",
       headers:{
