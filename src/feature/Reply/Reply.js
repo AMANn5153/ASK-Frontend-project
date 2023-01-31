@@ -11,7 +11,8 @@ const initialState={
 export const postReply=createAsyncThunk("reply/postReply",async(data,{rejectWithValue})=>{
     const {commentId,message}=data
     try{
-        const putReply=await fetch("/PostReply",{
+        const putReply=await fetch("https://ask-backend-chwt.onrender.com/PostReply",{
+           
             method:"put",
             headers:{
                 "content-type":"application/json",

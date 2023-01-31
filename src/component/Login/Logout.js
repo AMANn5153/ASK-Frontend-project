@@ -8,14 +8,12 @@ const Logout = () => {
     const navigate=useNavigate();
     const dispatch=useDispatch()
    useEffect(()=>{
-    fetch("/Logout",{
+    fetch("https://ask-backend-chwt.onrender.com/Logout",{
         method:"GET",
         headers:{
-            Accept:"application/json",
+            "Accept":"application/json",
             "Content-Type":"application/json"
         },
-        withCredentials:true,
-        credentials:"include"
     }).then((res)=>{
         dispatch(out({loginOrOut:false,status:"idle"}))//dispathing out action with payload to default value of initialstate
         navigate("/Login")//redirecting to /Login

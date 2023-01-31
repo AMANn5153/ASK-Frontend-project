@@ -2,7 +2,7 @@
   "name": "myapp",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8081/",
+  "proxy": "https://ask-backend-chwt.onrender.com",
   "dependencies": {
     "@coreui/react-chartjs": "^2.1.0",
     "@reduxjs/toolkit": "^1.8.6",

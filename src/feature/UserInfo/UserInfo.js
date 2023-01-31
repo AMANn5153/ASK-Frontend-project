@@ -20,7 +20,8 @@ const initialState={
 
  export const checkUser=createAsyncThunk("user/checkUser",async(data,{rejectWithValue})=>{//checking the user exist in the Likesarrayof the question
     try{
-        const fetchCheckUser=await fetch("/checkUser",{
+        const fetchCheckUser=await fetch("https://ask-backend-chwt.onrender.com/checkUser",{
+            
             method:"post",
             headers:{
                 "content-type":"application/json",
@@ -44,7 +45,8 @@ const initialState={
  export const fetchUser=createAsyncThunk("user/fetchUser",async(data,{rejectWithValue})=>{
     const {id}=data
     try{
-        const fetchInfo=await fetch("/UserInfo",{
+        const fetchInfo=await fetch("https://ask-backend-chwt.onrender.com/UserInfo",{
+            
             method:"Post",
             headers:{
                 "content-type":"application/json",           
@@ -69,7 +71,8 @@ const initialState={
 
 export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectWithValue})=>{
     try{
-        const addInfo= await fetch("/AddInfo",{
+        const addInfo= await fetch("https://ask-backend-chwt.onrender.com/AddInfo",{
+            
             method:"put",
             headers:{
                 "Content-type":"Application/json",
@@ -93,7 +96,8 @@ export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectW
 })
  export const accountFetchUser=createAsyncThunk("user/accountFetchUser",async()=>{//getting the infomation of the account user
     try{
-        const user=await fetch("/Account",{
+        const user=await fetch("https://ask-backend-chwt.onrender.com/Account",{
+            
             method:"Get",
             headers:{
                 "Accepts":"Application/json",
@@ -115,7 +119,8 @@ export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectW
 export const accountUpdates=createAsyncThunk("user/accountUpdates",async(data)=>{
     const about=data
     try{
-        const accountDetails=await fetch("/updateAbout",{
+        const accountDetails=await fetch("https://ask-backend-chwt.onrender.com/updateAbout",{
+            
             method:"put",
             headers:{
             "Accepts":"application/json",
@@ -137,7 +142,8 @@ export const accountUpdates=createAsyncThunk("user/accountUpdates",async(data)=>
 
 export const getProfilePic=createAsyncThunk("user/getProfilePic",async()=>{// getting the profile picture of the user
     try{
-        const getPic=await fetch("/getPic",{
+        const getPic=await fetch("https://ask-backend-chwt.onrender.com/getPic",{
+            
             method:"GET",
             headers:{
                 "Content-Type":"application/json",
@@ -159,7 +165,8 @@ export const getProfilePic=createAsyncThunk("user/getProfilePic",async()=>{// ge
 export const getStats=createAsyncThunk("user/getStats",async()=>{
     console.log("getstats")
     try{
-        const aggregate=await fetch("/stats",{
+        const aggregate=await fetch("https://ask-backend-chwt.onrender.com/stats",{
+            
             method:"GET",
             headers:{
                 "content-type":"application/json",
@@ -181,7 +188,8 @@ export const profilePic=createAsyncThunk("user/profilePic",async(pic)=>{
     // updating the profile pic in the database
    
     try{
-        const uploadPic=await fetch("/upload",{
+        const uploadPic=await fetch("https://ask-backend-chwt.onrender.com/upload",{
+            
             method:"put",
             headers:{
                 Accept:"application/json"
@@ -202,7 +210,8 @@ export const profilePic=createAsyncThunk("user/profilePic",async(pic)=>{
 
 // the deleting of the question
 export const delQues=createAsyncThunk("user/delQues",async (idQues)=>{
-    const res=await fetch("/delQuestion",{
+    const res=await fetch("https://ask-backend-chwt.onrender.com/delQuestion",{
+        
         method:"put",
         headers:{
         "content-type":"Application/json",

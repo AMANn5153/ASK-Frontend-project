@@ -8,7 +8,8 @@ const initialState={
 export const register = createAsyncThunk("regis/register",async(data,{rejectWithValue})=>{
     const{username,email,password}=data
     console.log(data)
-    const res=await fetch("/register",{
+    const res=await fetch("https://ask-backend-chwt.onrender.com/register",{
+        
         method:"post",
         headers:{
            "Content-Type": "application/json"

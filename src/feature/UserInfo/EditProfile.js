@@ -14,7 +14,8 @@ const initialState={
 
 export const postAddInfo=createAsyncThunk("userEdit/postAddInfo",async(data,{rejectWithValue})=>{
     try{
-        const addInfo= await fetch("/AddInfo",{
+        const addInfo= await fetch("https://ask-backend-chwt.onrender.com/AddInfo",{
+            
             method:"put",
             headers:{
                 "Content-type":"Application/json",
@@ -40,7 +41,8 @@ export const postAddInfo=createAsyncThunk("userEdit/postAddInfo",async(data,{rej
 
 export const postEditProfile=createAsyncThunk("userEdit/postEditProfile",async(data,{rejectWithValue})=>{
     try{
-    const editProfile=await fetch("/EditProfile",{
+    const editProfile=await fetch("https://ask-backend-chwt.onrender.com/EditProfile",{
+        
         method:"Put",
         headers:{
             "Accepts":"application/json",

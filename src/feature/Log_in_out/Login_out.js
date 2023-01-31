@@ -9,13 +9,13 @@ const initialState={
 export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
    
     try{
-    const res=await fetch("/CheckLogin",{
+    const res=await fetch("https://ask-backend-chwt.onrender.com/CheckLogin",{
+    
         method:"get",
         headers:{
             "Accepts":"Application/json",
             "Content-Type":"Application/json"
-        },withCredentials:true,
-        credentials:"include"
+        },
     })
     const result=await res.json()
         return result
@@ -27,12 +27,14 @@ export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
 
 export const postLogin=createAsyncThunk("LoginOut/postLogin",async(data,{rejectWithValue})=>{
     const {email,Password}=data
-    const res= await fetch("/Login",{
+    const res= await fetch("https://ask-backend-chwt.onrender.com/Login",{
+    
       method:"post",
       headers:{
         "Content-type":"application/json",
         'Accept': 'application/json'
-      },
+      },withCredentials:true,
+      credentials:"include",
       body:JSON.stringify({
         email,Password
       })

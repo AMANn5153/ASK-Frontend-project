@@ -8,7 +8,8 @@ const initialState={
 export const sendNewPassword=createAsyncThunk("change/sendNewPassword",async(data,{rejectWithValue})=>{
     const {password,email,token}=data
     try{
-        const res=await fetch("/changePass",{
+        const res=await fetch("https://ask-backend-chwt.onrender.com/changePass",{
+           
             method:"put",
             headers:{
                 "Accepts":"Application/Json",
@@ -33,7 +34,8 @@ export const sendNewPassword=createAsyncThunk("change/sendNewPassword",async(dat
 
 export const sendEmail=createAsyncThunk("change/sendEmail",async(data,{rejectWithValue})=>{
     try{
-        const res=await fetch("/emailVerify",{
+        const res=await fetch("https://ask-backend-chwt.onrender.com/emailVerify",{
+           
             method:"post",
             headers:{
                 "Accepts":"Application/Json",
