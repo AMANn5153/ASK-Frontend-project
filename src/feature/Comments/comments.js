@@ -15,7 +15,7 @@ export const sendComment=createAsyncThunk("comments/sendComment",async(data,{rej
             method:"put",
             headers:{
                 "content-type":"application/json"
-            },credentials:true,credentials:"include",
+            },credentials:"include",
             body:JSON.stringify(
                 {
                     comment,userId,postId

@@ -70,6 +70,7 @@ export const LoginOut=createSlice({
         })
         .addCase(postLogin.fulfilled,(state,action)=>{
             state.status="fulfilled"
+            state.loginOrOut=true
             state.token=action.payload.token
     
         })
@@ -77,21 +78,21 @@ export const LoginOut=createSlice({
             state.status="rejected"
             state.message=action.payload.error
         })
-        .addCase(checkLogin.pending,(state,action)=>{
-            state.status="pending"
-        })
-        .addCase(checkLogin.fulfilled,(state,action)=>{
-            state.status="fulfilled"
-            state.loginOrOut=action.payload.message
-            if(action.payload.error){
-                state.status=false
-            }
-        })
-        .addCase(checkLogin.rejected,(state,action)=>{
-            state.status="rejected"
-            state.loginOrOut=false
-            state.message=action.payload
-        })
+        // .addCase(checkLogin.pending,(state,action)=>{
+        //     state.status="pending"
+        // })
+        // .addCase(checkLogin.fulfilled,(state,action)=>{
+        //     state.status="fulfilled"
+        //     state.loginOrOut=action.payload.message
+        //     if(action.payload.error){
+        //         state.status=false
+        //     }
+        // })
+        // .addCase(checkLogin.rejected,(state,action)=>{
+        //     state.status="rejected"
+        //     state.loginOrOut=false
+        //     state.message=action.payload
+        // })
     }
 })
 
