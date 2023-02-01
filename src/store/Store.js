@@ -22,6 +22,6 @@ export const Store=configureStore({
         questionDetails,
         regis,
         passChange
-    }
+    },devTools:false
 })
 
