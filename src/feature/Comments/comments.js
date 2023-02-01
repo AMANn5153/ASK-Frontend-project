@@ -10,7 +10,7 @@ export const sendComment=createAsyncThunk("comments/sendComment",async(data,{rej
     // posting the data to database
     const{comment,userId,postId}=data
     try{
-        const res=await fetch("/Comment",{
+        const res=await fetch("https://askbackend-ek02.onrender.com/Comment",{
           
             method:"put",
             headers:{

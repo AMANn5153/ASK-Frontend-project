@@ -14,7 +14,7 @@ const initialState={
 
 export const postAddInfo=createAsyncThunk("userEdit/postAddInfo",async(data,{rejectWithValue})=>{
     try{
-        const addInfo= await fetch("/AddInfo",{
+        const addInfo= await fetch("https://askbackend-ek02.onrender.com/AddInfo",{
             
             method:"put",
             headers:{
@@ -41,7 +41,7 @@ export const postAddInfo=createAsyncThunk("userEdit/postAddInfo",async(data,{rej
 
 export const postEditProfile=createAsyncThunk("userEdit/postEditProfile",async(data,{rejectWithValue})=>{
     try{
-    const editProfile=await fetch("/EditProfile",{
+    const editProfile=await fetch("https://askbackend-ek02.onrender.com/EditProfile",{
         
         method:"Put",
         headers:{

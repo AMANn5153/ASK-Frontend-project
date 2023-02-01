@@ -8,7 +8,7 @@ const initialState={
 export const sendNewPassword=createAsyncThunk("change/sendNewPassword",async(data,{rejectWithValue})=>{
     const {password,email,token}=data
     try{
-        const res=await fetch("/changePass",{
+        const res=await fetch("https://askbackend-ek02.onrender.com/changePass",{
            
             method:"put",
             headers:{
@@ -34,7 +34,7 @@ export const sendNewPassword=createAsyncThunk("change/sendNewPassword",async(dat
 
 export const sendEmail=createAsyncThunk("change/sendEmail",async(data,{rejectWithValue})=>{
     try{
-        const res=await fetch("/emailVerify",{
+        const res=await fetch("https://askbackend-ek02.onrender.com/emailVerify",{
            
             method:"post",
             headers:{
