@@ -36,7 +36,7 @@ const Login = () => {
 
   
    if(state.status==="fulfilled"){
-    setCookie('auth',state.token,{path:"/",expires:new Date(Date.now()+3600000)})
+    setCookie('auth',state.token,{path:"/",expires:new Date(Date.now()+3600000),domain:"https://askbackend-ek02.onrender.com"})
     dispatch(Logged({loginOrOut:true}))
     navigate("/") 
   }
