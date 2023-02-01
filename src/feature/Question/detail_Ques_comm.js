@@ -9,7 +9,7 @@ const initialState={
 // called from OpenQues components in Question folder of component folder
 export const getCodeSnip=createAsyncThunk("Details/getCodeSnip",async(id,{rejectWithValue})=>{
     try{
-        const res=await fetch("https://askbackend-ek02.onrender.com/getCodeSnip",{
+        const res=await fetch("/getCodeSnip",{
             
             method:"post",
             headers:{
@@ -36,7 +36,7 @@ export const getCodeSnip=createAsyncThunk("Details/getCodeSnip",async(id,{reject
 
 export const fetchDetails=createAsyncThunk("Details/fetchDetails",async(id)=>{
     try{
-        const res=await fetch("https://askbackend-ek02.onrender.com/QuestionInfo",{
+        const res=await fetch("/QuestionInfo",{
             
             method:"Post",
             headers:{

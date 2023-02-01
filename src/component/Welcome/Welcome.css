@@ -25,7 +25,7 @@
     width:100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center
 }
 
 .cards-div-styl{
@@ -82,5 +82,11 @@
     text-align: center;
     color:white
 
+}
+
+@media  only screen and (max-width:780px){
+    .welcome-div-main-styl{
+        display:block;
+    }
 }
 

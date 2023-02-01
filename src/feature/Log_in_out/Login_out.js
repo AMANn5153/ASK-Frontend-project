@@ -1,15 +1,17 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
+
 const initialState={
     loginOrOut:false,
     message:"",
-    status:"idle"
+    status:"idle",
+    token:""
 }
 
 export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
    
     try{
-    const res=await fetch("https://askbackend-ek02.onrender.com/CheckLogin",{
+    const res=await fetch("/CheckLogin",{
     
         method:"get",
         headers:{
@@ -27,7 +29,7 @@ export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
 
 export const postLogin=createAsyncThunk("LoginOut/postLogin",async(data,{rejectWithValue})=>{
     const {email,Password}=data
-    const res= await fetch("https://askbackend-ek02.onrender.com/Login",{
+    const res= await fetch("http://localhost:8003/Login",{
     
       method:"post",
       headers:{
@@ -68,7 +70,8 @@ export const LoginOut=createSlice({
         })
         .addCase(postLogin.fulfilled,(state,action)=>{
             state.status="fulfilled"
-            state.message=action.payload.message
+            state.token=action.payload.token
+    
         })
         .addCase(postLogin.rejected,(state,action)=>{
             state.status="rejected"

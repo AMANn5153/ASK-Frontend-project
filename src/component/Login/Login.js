@@ -8,8 +8,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { postLogin,Logged,out } from '../../feature/Log_in_out/Login_out'
+import { useCookies } from 'react-cookie'
 
 const Login = () => {
+  const [showCookie,setCookie]=useCookies(['auth'])
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const state=useSelector(state=>state.Login)
@@ -34,6 +36,7 @@ const Login = () => {
 
   
    if(state.status==="fulfilled"){
+    setCookie('auth',state.token,{path:"/",expires:new Date(Date.now()+3600000)})
     dispatch(Logged({loginOrOut:true}))
     navigate("/") 
   }

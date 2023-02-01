@@ -8,7 +8,7 @@ const Logout = () => {
     const navigate=useNavigate();
     const dispatch=useDispatch()
    useEffect(()=>{
-    fetch("https://askbackend-ek02.onrender.com/Logout",{
+    fetch("/Logout",{
         method:"GET",
         headers:{
             "Accept":"application/json",
