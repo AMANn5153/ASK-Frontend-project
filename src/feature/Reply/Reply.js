@@ -17,7 +17,7 @@ export const postReply=createAsyncThunk("reply/postReply",async(data,{rejectWith
             headers:{
                 "content-type":"application/json",
                 "Accept":"application/json"
-            },
+            },credentials:"include",
             body:JSON.stringify({
                 commentId,message
             })

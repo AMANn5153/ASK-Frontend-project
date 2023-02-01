@@ -15,7 +15,7 @@ export const getCodeSnip=createAsyncThunk("Details/getCodeSnip",async(id,{reject
             headers:{
                 "Accepts":"Application/Json",
                 "Content-Type":"Application/Json"
-            },
+            },credentials:"include",
             body:JSON.stringify({
                 id
             })
@@ -41,7 +41,7 @@ export const fetchDetails=createAsyncThunk("Details/fetchDetails",async(id)=>{
             method:"Post",
             headers:{
                 "Content-type":"Application/json"
-            },
+            },credentials:"include",
             body:JSON.stringify({
                 id
             })

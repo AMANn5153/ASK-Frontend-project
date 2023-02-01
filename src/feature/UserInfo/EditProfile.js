@@ -20,7 +20,7 @@ export const postAddInfo=createAsyncThunk("userEdit/postAddInfo",async(data,{rej
             headers:{
                 "Content-type":"Application/json",
                 "Accept":"Application/json"
-            },
+            },credentials:"include",
             body:JSON.stringify({
                 data
             })
@@ -46,8 +46,8 @@ export const postEditProfile=createAsyncThunk("userEdit/postEditProfile",async(d
         method:"Put",
         headers:{
             "Accepts":"application/json",
-            "content-type":"Application/json"
-        },body:JSON.stringify({
+            "content-type":"Application/json" 
+        },credentials:"include",body:JSON.stringify({
             data
         })
     }

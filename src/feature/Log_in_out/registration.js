@@ -13,7 +13,7 @@ export const register = createAsyncThunk("regis/register",async(data,{rejectWith
         method:"post",
         headers:{
            "Content-Type": "application/json"
-            },
+            },credentials:"include",
         body:JSON.stringify({
              username,email,password
         })

@@ -14,7 +14,7 @@ export const sendNewPassword=createAsyncThunk("change/sendNewPassword",async(dat
             headers:{
                 "Accepts":"Application/Json",
                 "Content-type":"Application/Json"
-            },
+            },credentials:"include",
             body:JSON.stringify({
                 password,email,token
             })
@@ -40,7 +40,7 @@ export const sendEmail=createAsyncThunk("change/sendEmail",async(data,{rejectWit
             headers:{
                 "Accepts":"Application/Json",
                 "Content-type":"Application/Json"
-            },
+            },credentials:"include",
             body:JSON.stringify(
                 {data}
             )

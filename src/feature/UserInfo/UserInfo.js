@@ -26,7 +26,7 @@ const initialState={
             headers:{
                 "content-type":"application/json",
                 "Accept":"application/json"
-            },withCredentials:true,
+            },withCredentials:true, credentials:"include",
             body:JSON.stringify({
                 data
             })
@@ -51,7 +51,7 @@ const initialState={
             headers:{
                 "content-type":"application/json",           
                  "Accept":"application/json"
-            },withCredentials:true,
+            },withCredentials:true, credentials:"include",
             body:JSON.stringify({
                 id
             })
@@ -77,7 +77,7 @@ export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectW
             headers:{
                 "Content-type":"Application/json",
                 "Accept":"Application/json"
-            },withCredentials:true,
+            },withCredentials:true, credentials:"include",
             body:JSON.stringify({
                 data
             })
@@ -103,7 +103,7 @@ export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectW
                 "Accepts":"Application/json",
                 "content-type":"Application/json"
             },
-            withCredentials:true
+            withCredentials:true, credentials:"include"
         })
         const result=await user.json()
         if(user.status===202){
@@ -125,7 +125,7 @@ export const accountUpdates=createAsyncThunk("user/accountUpdates",async(data)=>
             headers:{
             "Accepts":"application/json",
             "Content-Type":"application/json"
-            },withCredentials:true,
+            },withCredentials:true, credentials:"include",
             body:JSON.stringify({
                 about
             })            
@@ -148,7 +148,8 @@ export const getProfilePic=createAsyncThunk("user/getProfilePic",async()=>{// ge
             headers:{
                 "Content-Type":"application/json",
                 "Accept":"application/json"
-            },  withCredentials:true
+            },  withCredentials:true,
+            credentials:"include"
         })
         if(getPic.status===202){
             const resPic=await getPic.blob()
@@ -171,7 +172,7 @@ export const getStats=createAsyncThunk("user/getStats",async()=>{
             headers:{
                 "content-type":"application/json",
                 "Accept":"application/json"
-            },withCredentials:true
+            },withCredentials:true ,credentials:"include"
         })
         const res=await aggregate.json()
         if(aggregate.status===200){
@@ -193,7 +194,7 @@ export const profilePic=createAsyncThunk("user/profilePic",async(pic)=>{
             method:"put",
             headers:{
                 Accept:"application/json"
-            },withCredentials:true,
+            },withCredentials:true, credentials:"include",
             body:pic
         })
         const res=await uploadPic.blob()
@@ -216,7 +217,7 @@ export const delQues=createAsyncThunk("user/delQues",async (idQues)=>{
         headers:{
         "content-type":"Application/json",
         "Accept":"Application/json"
-        },withCredentials:true,
+        },withCredentials:true, credentials:"include",
         body:JSON.stringify({
             idQues
         })

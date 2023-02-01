@@ -27,7 +27,7 @@ export const dataFetch=createAsyncThunk("question/dataFetch",async(rejectWithVal
      headers:{
        "Accept":"application/json",
        "Content-type":"application/json"
-     }
+     },credentials:"include"
    })
    const result= await res.json()
    if(res.status===202){
@@ -52,7 +52,7 @@ export const getLikes=createAsyncThunk("question/getLikes",async(data,{rejectWit
       headers:{
         "Accept":"application/json",
         "Content-type":"application/json"
-      },
+      },credentials:"include",
       body:JSON.stringify({
         data
       })      
@@ -83,7 +83,7 @@ export const Post=createAsyncThunk("question/Post",async (like,{rejectWithValue}
    headers:{
      "Accept":"application/json",
      "Content-type":"application/json"
-   },
+   },credentials:"include",
    body:JSON.stringify({
        userId,postId
    })

@@ -8,24 +8,24 @@ const initialState={
     token:""
 }
 
-export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
+// export const checkLogin=createAsyncThunk("LoginOut/checkLogin",async()=>{
    
-    try{
-    const res=await fetch("https://askbackend-ek02.onrender.com/CheckLogin",{
+//     try{
+//     const res=await fetch("https://askbackend-ek02.onrender.com/CheckLogin",{
     
-        method:"get",
-        headers:{
-            "Accepts":"Application/json",
-            "Content-Type":"Application/json"
-        },
-    })
-    const result=await res.json()
-        return result
-    }
-    catch(e){
-        console.log(e)
-    }
-})
+//         method:"get",
+//         headers:{
+//             "Accepts":"Application/json",
+//             "Content-Type":"Application/json"
+//         },
+//     })
+//     const result=await res.json()
+//         return result
+//     }
+//     catch(e){
+//         console.log(e)
+//     }
+// })
 
 export const postLogin=createAsyncThunk("LoginOut/postLogin",async(data,{rejectWithValue})=>{
     const {email,Password}=data

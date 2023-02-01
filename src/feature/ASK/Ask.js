@@ -49,6 +49,7 @@ export const postQuestion=createAsyncThunk("Ask/postQuestion",async(data)=>{
     try{
        const res = await  fetch("https://askbackend-ek02.onrender.com/Ask",{
         method:"Post",
+        credentials:"include",
         body:data
        })
        const result=await res.json()
