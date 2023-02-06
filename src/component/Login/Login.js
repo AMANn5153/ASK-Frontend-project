@@ -34,12 +34,21 @@ const Login = () => {
     setField({...showField,email:"",Password:""})
   }
 
-  
-   if(state.status==="fulfilled"){
-    setCookie('auth',state.token,{path:"/",expires:new Date(Date.now()+3600000),domain:"https://askbackend-ek02.onrender.com"})
+  if(state.status==="pending"){
+    toast(state.message,{
+          position:"top-center",
+          pauseOnHover:false,
+          theme:"light",
+    })}
+  if(state.status==="fulfilled"){
+    setCookie('auth',state.token,{
+    path:"/",
+    expires:new Date(Date.now()+3600000),
+  })
     dispatch(Logged({loginOrOut:true}))
     navigate("/") 
-  }
+   }
+  
   else if(state.status==="rejected"){
     toast(state.message,{
           position:"top-center",
