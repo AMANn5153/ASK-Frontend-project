@@ -39,7 +39,8 @@ const Login = () => {
           position:"top-center",
           pauseOnHover:false,
           theme:"light",
-    })}
+    })
+    dispatch(Logged({loginOrOut:true}))}
   if(state.status==="fulfilled"){
     dispatch(Logged({loginOrOut:true}))
     navigate("/") 
