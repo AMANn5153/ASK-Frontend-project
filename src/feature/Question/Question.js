@@ -77,7 +77,7 @@ export const Post=createAsyncThunk("question/Post",async (like,{rejectWithValue}
   const {userId,postId}=like
   console.log(like)
   try{
-   const res=await fetch("https://askbackend-ek02.onrender.com/PostLike",{
+   const res=await fetch("/PostLike",{
     
    method:"Post",
    headers:{

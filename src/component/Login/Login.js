@@ -9,7 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { postLogin,Logged,out } from '../../feature/Log_in_out/Login_out'
 import { useCookies } from 'react-cookie'
+import Loading from '../Extras/Loading'
 
+
+  
 const Login = () => {
   const [showCookie,setCookie]=useCookies(['auth'])
   const navigate=useNavigate()
@@ -27,6 +30,19 @@ const Login = () => {
     setField({...showField,[name]:value})
   }
 
+  
+  if(state.status==="fulfilled"){
+    dispatch(Logged())
+    navigate("/") 
+   }
+  
+  else if(state.status==="rejected"){
+          toast(state.message,{
+          position:"top-center",
+          pauseOnHover:false,
+          theme:"light",
+        })
+  dispatch(out({loginOrOut:false,status:"idle"}))}
 
   const dataT=async(e)=>{
     e.preventDefault();
@@ -34,26 +50,7 @@ const Login = () => {
     setField({...showField,email:"",Password:""})
   }
 
-  if(state.status==="pending"){
-    toast("wait.....",{
-          position:"top-center",
-          pauseOnHover:false,
-          theme:"light",
-    })
-    dispatch(Logged({loginOrOut:true}))}
-  if(state.status==="fulfilled"){
-    dispatch(Logged({loginOrOut:true}))
-    navigate("/") 
-   }
-  
-  else if(state.status==="rejected"){
-    toast(state.message,{
-          position:"top-center",
-          pauseOnHover:false,
-          theme:"light",
-        })
-    dispatch(out({loginOrOut:false,status:"idle"}))
-  }
+ 
 
   return (
     <>

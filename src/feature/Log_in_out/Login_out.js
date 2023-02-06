@@ -56,12 +56,14 @@ export const LoginOut=createSlice({
     initialState,
     reducers:{
         Logged:(state,action)=>{
-            state.loginOrOut=action.payload.loginOrOut
             state.status="idle"
         },
         out:(state,action)=>{
             state.loginOrOut=action.payload.loginOrOut
             state.status=action.payload.status
+        },
+        checkLogin:(state)=>{
+            state.loginOrOut=true
         }
         
     },
@@ -73,8 +75,7 @@ export const LoginOut=createSlice({
             state.status="fulfilled"
             console.log(action)
             state.loginOrOut=true
-            state.token=action.payload.token
-    
+            state.message=action.payload
         })
         .addCase(postLogin.rejected,(state,action)=>{
             state.status="rejected"
@@ -99,5 +100,5 @@ export const LoginOut=createSlice({
 })
 
 
-export const {Logged,out}=LoginOut.actions
+export const {Logged,out,checkLogin}=LoginOut.actions
 export default LoginOut.reducer
