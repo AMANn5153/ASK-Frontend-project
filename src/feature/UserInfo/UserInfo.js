@@ -172,7 +172,8 @@ export const getStats=createAsyncThunk("user/getStats",async()=>{
             headers:{
                 "content-type":"application/json",
                 "Accept":"application/json"
-            },withCredentials:true ,credentials:"include"
+            },withCredentials:true ,
+            credentials:"include"
         })
         const res=await aggregate.json()
         if(aggregate.status===200){

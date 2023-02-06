@@ -35,16 +35,12 @@ const Login = () => {
   }
 
   if(state.status==="pending"){
-    toast(state.message,{
+    toast("wait.....",{
           position:"top-center",
           pauseOnHover:false,
           theme:"light",
     })}
   if(state.status==="fulfilled"){
-    setCookie('auth',state.token,{
-    path:"/",
-    expires:new Date(Date.now()+3600000),
-  })
     dispatch(Logged({loginOrOut:true}))
     navigate("/") 
    }
