@@ -73,9 +73,8 @@ export const LoginOut=createSlice({
         })
         .addCase(postLogin.fulfilled,(state,action)=>{
             state.status="fulfilled"
-            console.log(action)
             state.loginOrOut=true
-            state.message=action.payload
+            state.token=action.payload.token
         })
         .addCase(postLogin.rejected,(state,action)=>{
             state.status="rejected"
