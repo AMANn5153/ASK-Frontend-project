@@ -29,7 +29,7 @@ const initialState={
 
 export const postLogin=createAsyncThunk("LoginOut/postLogin",async(data,{rejectWithValue})=>{
     const {email,Password}=data
-    const res= await fetch("https://askbackend-ek02.onrender.com/Login",{
+    const res= await fetch("/Login",{
     
       method:"post",
       headers:{

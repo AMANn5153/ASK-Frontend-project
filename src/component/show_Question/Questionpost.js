@@ -85,11 +85,7 @@ const Questionpost = () => {
       fontWeight:"normal"
     }}>Your Answer :</h1>
     <div style={{padding:"15px"}}>
-    <div  style={{width:"500px",
-                    height:"250px",
-                    display:"grid",
-                    gridTemplateRows: "1fr 5fr",
-                    border: "3px solid orange"}} >
+    <div  className="write-div-main">
                 <div className="write-div-head">
                     <div className='btn-div'>
                     <button className='btn-write' title="bold"><FaBold/></button>

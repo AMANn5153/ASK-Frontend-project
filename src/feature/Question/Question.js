@@ -21,7 +21,7 @@ const initialState={
 
 export const dataFetch=createAsyncThunk("question/dataFetch",async(rejectWithValue)=>{
     try{
-     const res=await fetch("https://askbackend-ek02.onrender.com/Question",{
+     const res=await fetch("/Question",{
       
      method:"GET",
      headers:{
@@ -46,7 +46,7 @@ export const dataFetch=createAsyncThunk("question/dataFetch",async(rejectWithVal
 
 export const getLikes=createAsyncThunk("question/getLikes",async(data,{rejectWithValue})=>{
   try{
-    const getLikeApi=await fetch("https://askbackend-ek02.onrender.com/getLikes",{
+    const getLikeApi=await fetch("/getLikes",{
       
       method:"Post",
       headers:{

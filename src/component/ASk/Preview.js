@@ -6,9 +6,12 @@ import { storeData,storeCodeSnip,postQuestion,reset} from '../../feature/ASK/Ask
 import "./Preview.css"
 import { previewCon } from './Ask'
 import { toast, ToastContainer } from 'react-toastify'
+import  {useNavigate} from "react-router-dom"
+import { dataFetch } from '../../feature/Question/Question';
 
 const Preview = () => {
     const data=useContext(previewCon)
+    const navigate=useNavigate()
     const {text,askText,input}=data
     const dispatch=useDispatch()
 
@@ -47,6 +50,8 @@ const Preview = () => {
             position:"top-center"
         })
         dispatch(reset())
+        dispatch(dataFetch())
+
     }
     else if(stateAsk.status==="rejected"){
         toast(stateAsk.message,{

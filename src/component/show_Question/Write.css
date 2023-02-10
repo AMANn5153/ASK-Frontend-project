@@ -9,11 +9,11 @@ background: #F8F8FF;
 }
 .write-div-main{
     /* box-shadow: 3px 3px 3px solid black; */
-    width:34rem;
-    height:500px;
-    display:grid;
-    grid-template-rows: 1fr 5fr;
-    border: 3px solid orange; 
+    width:"500px";
+    height:"250px";
+    display:"grid";
+    grid-template-columns: "1fr 5fr";
+    border: "3px solid orange"
     
 }
 
@@ -92,3 +92,31 @@ background: #F8F8FF;
     width:100%;
     height: 50%;
 }
+
+@media only screen and (max-width: 768px){
+    .write-div-styl{
+    width: 100vw;
+    height:auto;
+    }
+    .write-div-main{
+    width:75%;
+    height:500px;
+    }
+    .write-div-head{
+    width:100%;
+    }
+    .write-text{
+    height:100%;
+    }
+    .post-btn{
+    margin:10px;
+    width:70px;
+    height:30px;
+    padding:10px;
+    }
+    .btn-div-post{
+    width:100vw;
+    display: flex;
+    justify-content: center;
+    }
+    }

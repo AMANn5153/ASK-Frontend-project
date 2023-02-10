@@ -33,10 +33,10 @@ export const ask=createSlice({
         })
         .addCase(postQuestion.fulfilled,(state,action)=>{
             state.status="fulfilled"
-            state.message=action.payload.message
+            state.message="question Posted"
         })
         .addCase(postQuestion.rejected,(state,action)=>{
-            state.status="fulfilled"
+            state.status="rejected"
             state.message=action.payload.error
         })
 
@@ -47,7 +47,7 @@ export const ask=createSlice({
 export const postQuestion=createAsyncThunk("Ask/postQuestion",async(data)=>{
  
     try{
-       const res = await  fetch("https://askbackend-ek02.onrender.com/Ask",{
+       const res = await  fetch("/Ask",{
         method:"Post",
         credentials:"include",
         body:data

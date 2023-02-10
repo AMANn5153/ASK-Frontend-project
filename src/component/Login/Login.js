@@ -33,10 +33,6 @@ const Login = () => {
   
   if(state.status==="fulfilled"){
     dispatch(Logged())
-    setCookie("auth",state.token,{
-      path:"/",
-      expires:new Date(Date.now()+36000000)
-    })
     navigate("/") 
    }
   

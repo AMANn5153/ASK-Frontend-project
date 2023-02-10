@@ -106,3 +106,38 @@ input{
 .img-regis-hover:hover  span{
  visibility: visible;
 }
+
+@media only screen and (max-width: 720px) {
+    .regis-page {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 9fr;
+    }
+    .regis-page-box {
+    grid-row: 2/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    }
+    .regis-box {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 5px 4px rgb(197, 196, 196);
+    border-radius: 20px;
+    }
+    .form-group {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    }
+    .img-svg {
+    display: none;
+    }
+}    

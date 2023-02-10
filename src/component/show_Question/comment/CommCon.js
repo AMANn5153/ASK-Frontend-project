@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import "./comment.css"
 
 const style={
-  margin:"10px"
+  margin:"15px"
 }
 const CommCon = () => {
   const details=useSelector(state=>state.questionDetails)

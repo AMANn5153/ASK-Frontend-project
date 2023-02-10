@@ -115,3 +115,40 @@
 .reply-btn:hover{
     border-radius: 0 100px 100px 0;
 }
+
+@media only screen and (max-width:600px){
+    .head-style-comm{
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    }
+    .commCon-style{
+        width:100vw;
+    }
+    .commCon-style > p{
+        padding:10px;
+    }
+    .first-two-div{
+    grid-row:1/-1;
+    flex-direction: column;
+    align-items: center;
+    }
+    .head-comm h1{
+    text-align: center;
+    }
+    .two-two-style{
+    grid-row:2/-1;
+    flex-direction: column;
+    align-items: center;
+    }
+    .CommAns-styl{
+    grid-template-rows: 2fr 1fr;
+    }
+    .footer-commans{
+    flex-direction: column;
+    align-items: center;
+    }
+    .reply{
+    width:100%;
+    margin-left:0px;
+    }
+    }

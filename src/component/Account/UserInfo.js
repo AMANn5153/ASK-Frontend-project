@@ -9,21 +9,7 @@ import { accountFetchUser,clearTheInfo,profilePic,getProfilePic} from '../../fea
 import Edit from './Edit'
 import Footer from '../Footer/Footer'
 
-const style={
-  imagediv:{
-    width:"150px",
-    height:"150px",
-    borderRadius:"10px",
-    color:"orange"
-  },
- 
-  heading:{
-    fontWeight:"normal",
-    fontSize:"larger",
-    padding:"10px"
-    
-  }
-}
+
 
 export const TabNav=(props)=>{
  
@@ -94,15 +80,15 @@ const UserInfo = () => {
         <div className='account-body-layout'>
         <div className='account-body-header'>
         <div className='account-body-image'>
-          <div style={style.imagediv} >
+          <div className='account-image-div' >
               <img src={info.profilePic} width="150px" height="150px" alt="pic"/>
           </div>
           <div ><button className='userInfo-btn'>upload<input type="file" onChange={handleTheChange}></input></button></div>
         </div>
             <div className='account-body-info'>
-              <i style={style.heading}>{info.username}</i><br/><br/>
-              <i style={style.heading}>{info.email}</i><br/><br/>
-              <i style={style.heading}>{info.about}</i><br/><br/>
+              <i className='account-heading'>{info.username}</i><br/><br/>
+              <i className='account-heading'>{info.email}</i><br/><br/>
+              <i className='account-heading'>{info.about}</i><br/><br/>
               <p></p>
             </div>
             <div className='account-body-button'>

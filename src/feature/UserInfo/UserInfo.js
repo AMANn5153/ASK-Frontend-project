@@ -20,7 +20,7 @@ const initialState={
 
  export const checkUser=createAsyncThunk("user/checkUser",async(data,{rejectWithValue})=>{//checking the user exist in the Likesarrayof the question
     try{
-        const fetchCheckUser=await fetch("https://askbackend-ek02.onrender.com/checkUser",{
+        const fetchCheckUser=await fetch("/checkUser",{
             
             method:"post",
             headers:{
@@ -45,7 +45,7 @@ const initialState={
  export const fetchUser=createAsyncThunk("user/fetchUser",async(data,{rejectWithValue})=>{
     const {id}=data
     try{
-        const fetchInfo=await fetch("https://askbackend-ek02.onrender.com/UserInfo",{
+        const fetchInfo=await fetch("/UserInfo",{
             
             method:"Post",
             headers:{
@@ -71,7 +71,7 @@ const initialState={
 
 export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectWithValue})=>{
     try{
-        const addInfo= await fetch("https://askbackend-ek02.onrender.com/AddInfo",{
+        const addInfo= await fetch("/AddInfo",{
             
             method:"put",
             headers:{
@@ -96,7 +96,7 @@ export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectW
 })
  export const accountFetchUser=createAsyncThunk("user/accountFetchUser",async()=>{//getting the infomation of the account user
     try{
-        const user=await fetch("https://askbackend-ek02.onrender.com/Account",{
+        const user=await fetch("/Account",{
             
             method:"Get",
             headers:{
@@ -119,7 +119,7 @@ export const postAddInfo=createAsyncThunk("user/postAddInfo",async(data,{rejectW
 export const accountUpdates=createAsyncThunk("user/accountUpdates",async(data)=>{
     const about=data
     try{
-        const accountDetails=await fetch("https://askbackend-ek02.onrender.com/updateAbout",{
+        const accountDetails=await fetch("/updateAbout",{
             
             method:"put",
             headers:{
@@ -142,7 +142,7 @@ export const accountUpdates=createAsyncThunk("user/accountUpdates",async(data)=>
 
 export const getProfilePic=createAsyncThunk("user/getProfilePic",async()=>{// getting the profile picture of the user
     try{
-        const getPic=await fetch("https://askbackend-ek02.onrender.com/getPic",{
+        const getPic=await fetch("/getPic",{
             
             method:"GET",
             headers:{
@@ -164,9 +164,8 @@ export const getProfilePic=createAsyncThunk("user/getProfilePic",async()=>{// ge
 })
 
 export const getStats=createAsyncThunk("user/getStats",async()=>{
-    console.log("getstats")
     try{
-        const aggregate=await fetch("https://askbackend-ek02.onrender.com/stats",{
+        const aggregate=await fetch("/stats",{
             
             method:"GET",
             headers:{
@@ -190,7 +189,7 @@ export const profilePic=createAsyncThunk("user/profilePic",async(pic)=>{
     // updating the profile pic in the database
    
     try{
-        const uploadPic=await fetch("https://askbackend-ek02.onrender.com/upload",{
+        const uploadPic=await fetch("/upload",{
             
             method:"put",
             headers:{
@@ -212,7 +211,7 @@ export const profilePic=createAsyncThunk("user/profilePic",async(pic)=>{
 
 // the deleting of the question
 export const delQues=createAsyncThunk("user/delQues",async (idQues)=>{
-    const res=await fetch("https://askbackend-ek02.onrender.com/delQuestion",{
+    const res=await fetch("/delQuestion",{
         
         method:"put",
         headers:{

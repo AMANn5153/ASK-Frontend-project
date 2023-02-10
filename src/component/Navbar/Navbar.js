@@ -13,7 +13,6 @@ import { checkLogin } from '../../feature/Log_in_out/Login_out'
 const Iconsnav=()=>{
     return(
         <>
-            <NavLink className="active_class " to="/"><IoIosNotifications size={25}/><span>Notification</span></NavLink> 
             <NavLink className="active_class " to="/UserInfo"><FaUserCircle size={25}/><span>Account</span></NavLink> 
             <NavLink className="active_class " to="/Logout"><BiLogOutCircle size={25}/><span>Logout</span></NavLink> 
         </>
@@ -32,7 +31,7 @@ const Sign=()=>{
 const NavBar=()=>{
     const dispatch=useDispatch()
     const stateInOut=useSelector(state=>state.Login)//getting state of login reducer
-    if(document.cookie){
+    if(document.cookie.includes("authcookie")){
         dispatch(checkLogin())
     }
 
@@ -40,7 +39,7 @@ const NavBar=()=>{
         <>
         <nav className='nav-div-styl'>
         {/* <div className="nav-div-styl"> */}
-            <div className='nav-div-head-styl'>
+            <div className='nav-div-head-styl nav-animation'>
            <Link to='/'> {
                 ask.map((val,index)=>{return(
                     <Animation 
@@ -52,10 +51,12 @@ const NavBar=()=>{
             </Link>
             </div>
             <div className='nav-div-list-styl'>
-                <ul className='ul-styl'>
+                <div className="hide-home"><Link to="/"><h1>Ask</h1></Link></div>
+                <div> 
+                 <ul className='ul-styl'>
                 {stateInOut.loginOrOut===true?<li><div className='div-link'><NavLink exact="true" className="active_class "  to="/Ask">Ask</NavLink></div></li>:null}
                     <li><div className='div-link'><NavLink exact="true" className="active_class "  to="/Question">Question</NavLink></div></li>
-                </ul>
+                </ul></div>
             </div>
             <div className='nav-div-sm-styl'>
            {stateInOut.loginOrOut===true?<Iconsnav/>:<Sign/>} 

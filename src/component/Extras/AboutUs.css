@@ -40,3 +40,16 @@
     line-height: 26pt;
     color:rgb(119, 90, 9)
 }
+
+@media only screen and (max-width:767px){
+    .AboutUs-div-styl{
+    margin-top:5px ;
+    border:1px solid rgb(151, 151, 151);
+    height: 100vw;
+    width:95%;
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    border-radius: 20px;
+    overflow: hidden;
+    }
+    }

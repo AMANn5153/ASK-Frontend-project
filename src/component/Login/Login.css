@@ -63,3 +63,19 @@ input{
     background-color: orange;
     box-shadow: 4px 4px 4px rgb(197, 196, 196); 
 }
+@media screen and (max-width: 720px) {
+    .Login-page {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 9fr;
+    }
+  
+    .Login-content-box {
+      grid-template-columns: 1fr;
+      width: 90%;
+      height: 80%;
+    }
+  
+    .login-form, .login-img {
+      grid-column: 1/-1;
+    }
+  }

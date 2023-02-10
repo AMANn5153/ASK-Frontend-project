@@ -8,6 +8,8 @@ import Loading from '../Extras/Loading';
 
 
 const FulFilledQuestion=({data})=>{
+  const orderedData=data.slice().sort((a,b)=>{b.date.localeCompare(a.date)})
+  console.log(orderedData)
   return(
     <>
        <div className='Question'>
@@ -16,7 +18,8 @@ const FulFilledQuestion=({data})=>{
             </div>
             <div className='question-body'>
             <div className='heading-ques'><h1>Question</h1></div>
-            {data.map((val,index)=>{
+            
+            {orderedData.map((val,index)=>{
                return(
                       <QuesPage 
                       key={index}
