@@ -13,7 +13,8 @@ const Logout = () => {
         headers:{
             "Accept":"application/json",
             "Content-Type":"application/json"
-        },
+        },withCredentials:true,
+        credentials:"include"
     }).then((res)=>{
         dispatch(out({loginOrOut:false,status:"idle"}))//dispathing out action with payload to default value of initialstate
         navigate("/Login")//redirecting to /Login

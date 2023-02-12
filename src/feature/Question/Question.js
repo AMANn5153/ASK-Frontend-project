@@ -21,7 +21,7 @@ const initialState={
 
 export const dataFetch=createAsyncThunk("question/dataFetch",async(rejectWithValue)=>{
     try{
-     const res=await fetch("/Question",{
+     const res=await fetch("/api/questionDetails",{
       
      method:"GET",
      headers:{

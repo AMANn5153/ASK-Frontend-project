@@ -26,7 +26,7 @@ const QuesPage = (props) => {
               </div>
           </div>
               <div className='quespage-body'>
-               <p style={{padding:"10px",fontSize:"large"}}>{props.content.substring(0,150)}</p>
+               <p style={{padding:"10px",fontSize:"large"}}>{props.content.substring(0,90)}</p>
                </div>
           </div>
     </>
